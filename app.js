@@ -15,9 +15,15 @@ function stopTimer(){clearInterval(timerId);timerId=null}
 function confetti(){/* no celebration effects: feedback card gets a soft pulse */requestAnimationFrame(()=>{const r=document.querySelector('.fb');if(r)r.classList.add('pulse')})}
 // ---- speech
 let frVoice=null;
-function pickVoice(){const v=speechSynthesis.getVoices();frVoice=v.find(x=>x.lang==='fr-FR'&&/Thomas|Amélie|Audrey|Google/i.test(x.name))||v.find(x=>x.lang==='fr-FR')||v.find(x=>/^fr/.test(x.lang))||null}
-if('speechSynthesis'in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
-function speak(t,rate){if(!('speechSynthesis'in window)){alert('Speech not supported in this browser.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';if(frVoice)u.voice=frVoice;u.rate=rate||0.9;speechSynthesis.speak(u)}
+function pickVoice(){const v=speechSynthesis.getVoices();if(!v.length)return;frVoice=v.find(x=>x.lang==='fr-FR'&&/Thomas|Amélie|Audrey|Google/i.test(x.name))||v.find(x=>x.lang==='fr-FR')||v.find(x=>/^fr/i.test(x.lang))||null}
+if('speechSynthesis'in window){pickVoice();speechSynthesis.addEventListener('voiceschanged',pickVoice)}
+var player=new Audio();player.preload='auto';
+function stopAudio(){try{player.pause()}catch(e){}if('speechSynthesis'in window)speechSynthesis.cancel()}
+function ttsFallback(t,rate){if(!('speechSynthesis'in window)){alert('Audio could not play in this browser.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';if(!frVoice)pickVoice();if(frVoice)u.voice=frVoice;u.rate=rate||0.9;speechSynthesis.speak(u)}
+function speak(t,rate){const k=window.AUDIO_MAP&&AUDIO_MAP[t];stopAudio();if(!k){ttsFallback(t,rate);return}
+ const src='audio/'+k+(rate&&rate<0.8?'-slow':'')+'.mp3';
+ if(!player.src.endsWith(src))player.src=src;player.currentTime=0;
+ const p=player.play();if(p&&p.catch)p.catch(e=>{console.warn('audio fallback',e&&e.name);ttsFallback(t,rate)})}
 // ---- chrome
 function ring(f,sz=44,sw=4){const r=(sz-sw)/2,c=2*Math.PI*r;return `<svg class="pr" width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" aria-hidden="true"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" stroke-width="${sw}" class="trk"/><circle cx="${sz/2}" cy="${sz/2}" r="${r}" stroke-width="${sw}" class="val" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-Math.max(0,Math.min(1,f)))}" transform="rotate(-90 ${sz/2} ${sz/2})"/></svg>`}
 function topHome(){top_.className='';top_.innerHTML=`<div class="brand"><span class="mono">tcf</span><em>B1</em></div><div class="pill" title="Practice days in a row">${streakAlive()} j</div><div class="pill" title="Practice points">${S.xp} pts</div>`}
@@ -30,7 +36,7 @@ function tabs(cur){const t=[['home','Accueil','M3 10l7-6 7 6v7H3z'],['mockStart'
  return `<nav class="tabs" aria-label="Navigation"><div><span class="navbrand">tcf <em>B1</em></span>${t.map(([v,l,d])=>`<button class="${cur===v?'on':''}" onclick="go('${v}',0)"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg><span>${l}</span></button>`).join('')}</div></nav>`}
 function foot(html){return `<div class="foot"><div>${html}</div></div>`}
 // ---- router
-function go(v,arg){stopTimer();hideBanner();if('speechSynthesis'in window)speechSynthesis.cancel();scrollTo(0,0);
+function go(v,arg){stopTimer();hideBanner();stopAudio();scrollTo(0,0);
  if(v!=='mock')mock=null;document.body.dataset.v=v;({home,quiz,writing,speaking,mockStart,results,welcome}[v]||home)(arg)}
 function home(){topHome();
  const st=streakAlive(),all=['L','G','R'].map(k=>score(k)),tot=all.reduce((a,b)=>a+b[1],0),cor=all.reduce((a,b)=>a+b[0],0),N=READING.length+GRAMMAR.length+LISTENING.length;
@@ -50,7 +56,7 @@ function home(){topHome();
 function firstUn(k){const d=SEC[k].d;for(let i=0;i<d.length;i++)if(!(i in S.ans[k]))return i;return 0}
 // ---- question card
 function qHTML(k,q,chosen,show,sel){let h='';
- if(k==='L'){h+=`<div class="row" style="justify-content:center;margin:6px 0 10px"><button class="btn pri spk" aria-label="Écouter" onclick='speak(${JSON.stringify(q.s)})'><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg><span>Écouter</span></button><button class="btn ghost spk" aria-label="Lentement" onclick='speak(${JSON.stringify(q.s)},0.7)'><span class="slow">0.7×</span><span>Lentement</span></button></div><p class="mut" style="text-align:center">Tap to listen · replay as often as you like</p>`;
+ if(k==='L'){h+=`<div class="row" style="justify-content:center;margin:6px 0 10px"><button class="btn pri spk" aria-label="Écouter" onclick='speak(${JSON.stringify(q.s).replace(/'/g,"&#39;")})'><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg><span>Écouter</span></button><button class="btn ghost spk" aria-label="Lentement" onclick='speak(${JSON.stringify(q.s).replace(/'/g,"&#39;")},0.7)'><span class="slow">0.7×</span><span>Lentement</span></button></div><p class="mut" style="text-align:center">Tap to listen · replay as often as you like</p>`;
   if(show)h+=`<div class="text anim"><span class="eyebrow">Transcript</span>${esc(q.s)}</div>`}
  else if(q.t)h+=`<div class="text">${esc(q.t)}</div>`;
  h+=`<div class="q">${esc(q.q)}</div>`;
@@ -77,7 +83,7 @@ function mockStart(){topSes(0);app.innerHTML=`<div class="anim" style="text-alig
 function mockBegin(){const pick=(k,n)=>shuffle(SEC[k].d.map((_,i)=>i)).slice(0,n).map(i=>({k,i}));
  mock={qs:[...pick('L',10),...pick('G',10),...pick('R',10)],a:{},cur:0,end:Date.now()+30*60e3};mockShow()}
 function tick(){const r=Math.max(0,mock.end-Date.now()),e=$('#clk');if(e)e.textContent=`${Math.floor(r/6e4)}:${String(Math.floor(r/1e3)%60).padStart(2,'0')}`;if(!r)mockFinish(true)}
-function mockShow(){if('speechSynthesis'in window)speechSynthesis.cancel();scrollTo(0,0);stopTimer();
+function mockShow(){stopAudio();scrollTo(0,0);stopTimer();
  const{qs,cur}=mock,{k,i}=qs[cur],q=SEC[k].d[i],ch=mock.a[cur];
  topSes(Object.keys(mock.a).length/qs.length,'<div class="pill clk" id="clk"></div>');timerId=setInterval(tick,1000);tick();
  app.innerHTML=`<div class="anim">${tag(k)} <span class="mut">${cur+1}/${qs.length}</span><div style="height:8px"></div>${qHTML(k,q,null,false,ch)}</div>
@@ -112,7 +118,7 @@ function speaking(n){const s=SPEAKING[n];let left,phase;topSes((n+1)/SPEAKING.le
  <div class="card" style="text-align:center"><p class="mut">${s.prep?`2 min preparation, then speak for ${Math.round(s.sec/6)/10} min.`:`Speak out loud for about ${Math.round(s.sec/6)/10} min. Tip: record yourself with Voice Memos.`}</p>
  <div class="timer" id="tm">${fmt(s.prep||s.sec)}</div><div class="mut" id="ph">${s.prep?'Préparation':'Prêt ?'}</div>
  <div class="row" style="margin-top:10px"><button class="btn pri" id="go">Démarrer</button><button class="btn ghost" style="flex:0 0 64px" onclick="go('speaking',${n})">↺</button></div></div>
- <button class="btn ghost w" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">Show model answer</button><div hidden><div class="model">${esc(s.m)}</div><button class="btn pri w" onclick='speak(${JSON.stringify(s.m)},0.85)'>Listen to model</button></div></div>
+ <button class="btn ghost w" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">Show model answer</button><div hidden><div class="model">${esc(s.m)}</div><button class="btn pri w" onclick='speak(${JSON.stringify(s.m).replace(/'/g,"&#39;")},0.85)'>Listen to model</button></div></div>
  ${foot(`<div class="row"><button class="btn ghost" style="flex:0 0 64px" ${n?'':'disabled'} onclick="go('speaking',${n-1})">←</button><button class="btn pri" onclick="${n<SPEAKING.length-1?`go('speaking',${n+1})`:"go('home')"}">${n<SPEAKING.length-1?'Continuer':'Terminer'}</button></div>`)}`;
  $('#go').onclick=()=>{if(timerId)return;left=s.prep||s.sec;phase=s.prep?'prep':'talk';$('#ph').textContent=phase==='prep'?'Préparation…':'Parlez !';
   timerId=setInterval(()=>{left--;$('#tm').textContent=fmt(left);if(left<=0){if(phase==='prep'){phase='talk';left=s.sec;$('#ph').textContent='Parlez !'}else{stopTimer();$('#ph').textContent='Terminé';navigator.vibrate&&navigator.vibrate(300);if(!S.spk[n]){S.spk[n]=1;addXP(15)}confetti();showBanner(true,'Time · +15 pts','Now compare with the model answer.','OK',hideBanner)}}},1000)}}
