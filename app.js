@@ -26,14 +26,14 @@ function speak(t,rate){const k=window.AUDIO_MAP&&AUDIO_MAP[t];stopAudio();if(!k)
  const p=player.play();if(p&&p.catch)p.catch(e=>{console.warn('audio fallback',e&&e.name);ttsFallback(t,rate)})}
 // ---- chrome
 function ring(f,sz=44,sw=4){const r=(sz-sw)/2,c=2*Math.PI*r;return `<svg class="pr" width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" aria-hidden="true"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" stroke-width="${sw}" class="trk"/><circle cx="${sz/2}" cy="${sz/2}" r="${r}" stroke-width="${sw}" class="val" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-Math.max(0,Math.min(1,f)))}" transform="rotate(-90 ${sz/2} ${sz/2})"/></svg>`}
-function topHome(){top_.className='';top_.innerHTML=`<div class="brand"><span class="mono">tcf</span><em>B1</em></div><div class="pill" title="Practice days in a row">${streakAlive()} j</div><div class="pill" title="Practice points">${S.xp} pts</div>`}
+function topHome(){top_.className='';top_.innerHTML=`<div class="brand"><div class="brand-row"><span class="mono">tcf</span><em>B1</em></div><a class="by" href="https://underkover.com" target="_blank" rel="noopener">by underkover</a></div><div class="pill" title="Practice days in a row">${streakAlive()} j</div><div class="pill" title="Practice points">${S.xp} pts</div>`}
 function topSes(frac,extra=''){top_.className='ses';top_.innerHTML=`<button class="x-btn" aria-label="Fermer" onclick="${mock?"if(confirm('Quit the mock test?'))go('home')":"go('home')"}"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><div class="prog"><i style="width:${Math.max(0,Math.min(1,frac))*100}%"></i></div>${extra}`}
 function hideBanner(){const f=document.querySelector('.fb');if(f)f.remove()}
 function showBanner(ok,title,body,btn,fn){hideBanner();const a=document.createElement('aside');a.className='fb '+(ok?'ok':'bad');a.setAttribute('role','status');
  a.innerHTML=`<div class="fb-h"><span class="dot"></span><h3>${title}</h3></div><p>${body}</p><button class="btn pri w" id="cont">${btn||'Suite'} <span aria-hidden="true">→</span></button>`;
  const ft=app.querySelector('.nav');app.insertBefore(a,ft||null);$('#cont').onclick=fn;requestAnimationFrame(()=>{a.classList.add('on')})}
 function tabs(cur){const t=[['home','Accueil','M3 10l7-6 7 6v7H3z'],['mockStart','Examen','M10 3a7 7 0 100 14 7 7 0 000-14zm0 3v4l3 2'],['writing','Écrit','M4 16l2-.5L16 5.5 14.5 4 4.5 14zM12 6l2 2'],['speaking','Oral','M10 3v8m-3-3a3 3 0 006 0M6 11a4 4 0 008 0m-4 4v2'],['welcome','Aperçu','M10 9v5m0-8v.01M10 2a8 8 0 100 16 8 8 0 000-16z']];
- return `<nav class="tabs" aria-label="Navigation"><div><span class="navbrand">tcf <em>B1</em></span>${t.map(([v,l,d])=>`<button class="${cur===v?'on':''}" onclick="go('${v}',0)"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg><span>${l}</span></button>`).join('')}</div></nav>`}
+ return `<nav class="tabs" aria-label="Navigation"><div><span class="navbrand">tcf <em>B1</em><a class="by" href="https://underkover.com" target="_blank" rel="noopener">by underkover</a></span>${t.map(([v,l,d])=>`<button class="${cur===v?'on':''}" onclick="go('${v}',0)"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg><span>${l}</span></button>`).join('')}</div></nav>`}
 function foot(html){return `<div class="foot"><div>${html}</div></div>`}
 // ---- router
 function go(v,arg){stopTimer();hideBanner();stopAudio();scrollTo(0,0);
@@ -52,6 +52,7 @@ function home(){topHome();
  </div>
  ${S.hist.length?`<div class="card"><span class="eyebrow">Mock test history</span>${S.hist.slice(-5).reverse().map(h=>`<div class="hist"><span>${h.d}</span><b>${h.c}/${h.t}</b><span>≈${level(100*h.c/h.t)}*</span></div>`).join('')}</div>`:''}
  <p class="mut small">* The level is a rough <b>estimate</b> from practice scores, not an official TCF result. The real TCF scores 100–699; B1 is roughly 300–399.</p>
+ <p class="site-credit"><a href="https://underkover.com" target="_blank" rel="noopener">by underkover</a><span aria-hidden="true"> · </span><a href="terms.html">Terms</a></p>
  <button class="btn ghost w" onclick="if(confirm('Erase all progress, points and practice days?')){localStorage.removeItem(KEY);location.reload()}">Reset progress</button>${tabs('home')}`}
 function firstUn(k){const d=SEC[k].d;for(let i=0;i<d.length;i++)if(!(i in S.ans[k]))return i;return 0}
 // ---- question card
@@ -123,7 +124,7 @@ function speaking(n){const s=SPEAKING[n];let left,phase;topSes((n+1)/SPEAKING.le
  $('#go').onclick=()=>{if(timerId)return;left=s.prep||s.sec;phase=s.prep?'prep':'talk';$('#ph').textContent=phase==='prep'?'Préparation…':'Parlez !';
   timerId=setInterval(()=>{left--;$('#tm').textContent=fmt(left);if(left<=0){if(phase==='prep'){phase='talk';left=s.sec;$('#ph').textContent='Parlez !'}else{stopTimer();$('#ph').textContent='Terminé';navigator.vibrate&&navigator.vibrate(300);if(!S.spk[n]){S.spk[n]=1;addXP(15)}confetti();showBanner(true,'Time · +15 pts','Now compare with the model answer.','OK',hideBanner)}}},1000)}}
 const SEEN='tcfb1_seen';
-function welcome(){top_.className='wl';top_.innerHTML=`<div class="brand"><span class="mono">tcf</span><em>B1</em></div><button class="pill" onclick="startApp()">${localStorage.getItem(SEEN)?'Mon tableau →':'Passer →'}</button>`;
+function welcome(){top_.className='wl';top_.innerHTML=`<div class="brand"><div class="brand-row"><span class="mono">tcf</span><em>B1</em></div><a class="by" href="https://underkover.com" target="_blank" rel="noopener">by underkover</a></div><button class="pill" onclick="startApp()">${localStorage.getItem(SEEN)?'Mon tableau →':'Passer →'}</button>`;
  const f=(n,t,d)=>`<li class="anim"><span class="num">${n}</span><div><b>${t}</b><span>${d}</span></div></li>`;
  app.innerHTML=`<section class="wel">
  <div class="wel-hero anim"><p class="eyebrow">Free practice · TCF / DELF niveau B1</p>
@@ -142,6 +143,7 @@ function welcome(){top_.className='wl';top_.innerHTML=`<div class="brand"><span 
  <div class="card anim"><span class="eyebrow">Private</span>No account, no sign-up. Your progress stays on this device, in this browser.</div>
  <div class="card anim"><span class="eyebrow">Estimate only</span>Levels shown here are rough estimates from practice, not an official TCF or DELF result.</div></div>
  <button class="btn acc w big-cta" onclick="startApp()">Commencer <span aria-hidden="true">→</span></button>
- <p class="mut small">Not affiliated with France Éducation international, which runs the TCF and DELF. Questions are practice material and may differ from the real exam.</p></section>`}
+ <p class="mut small">Not affiliated with France Éducation international, which runs the TCF and DELF. Questions are practice material and may differ from the real exam.</p>
+ <p class="site-credit"><a href="https://underkover.com" target="_blank" rel="noopener">by underkover</a><span aria-hidden="true"> · </span><a href="terms.html">Terms</a></p></section>`}
 function startApp(){localStorage.setItem(SEEN,'1');go('home')}
 go(localStorage.getItem(SEEN)?'home':'welcome');
