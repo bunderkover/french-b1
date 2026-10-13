@@ -41,18 +41,19 @@ function go(v,arg){stopTimer();hideBanner();stopAudio();scrollTo(0,0);
 function home(){topHome();
  const st=streakAlive(),all=['L','G','R'].map(k=>score(k)),tot=all.reduce((a,b)=>a+b[1],0),cor=all.reduce((a,b)=>a+b[0],0),N=READING.length+GRAMMAR.length+LISTENING.length;
  const wd=Object.values(S.w).filter(x=>x.t&&x.t.trim()).length,sd=Object.keys(S.spk).length,h=new Date().getHours();
- const tile=(k,cls)=>{const[c,t]=score(k),d=SEC[k].d.length;return `<button class="tile ${cls}" onclick="go('quiz',{k:'${k}',i:firstUn('${k}')})"><span class="eyebrow">${SEC[k].ic}</span><span class="glyph" aria-hidden="true">${SEC[k].g}</span><span class="tt">${SEC[k].en}</span><span class="meta">${t}/${d}${t?' · ≈'+level(100*c/t)+'*':''}</span><span class="bar"><i style="width:${100*t/d}%"></i></span></button>`};
- app.innerHTML=`<section class="intro anim"><p class="eyebrow">${new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}</p><h1>${h<18?'Bonjour':'Bonsoir'}, <i>on s'entraîne&nbsp;?</i></h1></section>
+ const tile=(k,cls)=>{const[c,t]=score(k),d=SEC[k].d.length;return `<button class="tile ${cls}" onclick="go('quiz',{k:'${k}',i:firstUn('${k}')})"><span class="eyebrow">${SEC[k].ic}</span>${EMB[k]?ART(EMB[k],'emb'):`<span class="glyph" aria-hidden="true">${SEC[k].g}</span>`}<span class="tt">${SEC[k].en}</span><span class="meta">${t}/${d}${t?' · ≈'+level(100*c/t)+'*':''}</span><span class="bar"><i style="width:${100*t/d}%"></i></span></button>`};
+ app.innerHTML=`<section class="intro anim">${ART('hero-accent','heroart')}<p class="eyebrow">${new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}</p><h1>${h<18?'Bonjour':'Bonsoir'}, <i>on s'entraîne&nbsp;?</i></h1></section>
  <div class="bento">
   <div class="tile hero anim"><div class="ringwrap">${ring(N?tot/N:0,104,8)}<div class="rv"><b>${Math.round(100*tot/N)}%</b><span>done</span></div></div><div><span class="eyebrow">Progress</span><p class="lead">${tot} of ${N} questions answered${tot?` · ≈<b>${level(100*cor/tot)}</b>*`:''}</p><p class="meta">${st?`${st} day${st>1?'s':''} in a row. Keep the rhythm.`:'Answer one question today to start a practice run.'}</p></div></div>
   ${tile('L','t-w anim')}${tile('G','anim')}${tile('R','anim')}
-  <button class="tile anim" onclick="go('writing',0)"><span class="eyebrow">Production</span><span class="glyph" aria-hidden="true">¶</span><span class="tt">Writing</span><span class="meta">${wd}/${WRITING.length} drafts</span><span class="bar"><i style="width:${100*wd/WRITING.length}%"></i></span></button>
-  <button class="tile anim" onclick="go('speaking',0)"><span class="eyebrow">Production</span><span class="glyph" aria-hidden="true">“&#8239;”</span><span class="tt">Speaking</span><span class="meta">${sd}/${SPEAKING.length} done</span><span class="bar"><i style="width:${100*sd/SPEAKING.length}%"></i></span></button>
+  <button class="tile anim" onclick="go('writing',0)"><span class="eyebrow">Production</span>${ART('emblem-writing','emb')}<span class="tt">Writing</span><span class="meta">${wd}/${WRITING.length} drafts</span><span class="bar"><i style="width:${100*wd/WRITING.length}%"></i></span></button>
+  <button class="tile anim" onclick="go('speaking',0)"><span class="eyebrow">Production</span>${ART('emblem-speaking','emb')}<span class="tt">Speaking</span><span class="meta">${sd}/${SPEAKING.length} done</span><span class="bar"><i style="width:${100*sd/SPEAKING.length}%"></i></span></button>
   <button class="tile exam anim" onclick="go('mockStart')"><span class="eyebrow">Examen blanc</span><span class="tt">Mock test</span><span class="meta">30 min · 30 mixed questions</span><span class="arrow" aria-hidden="true">→</span></button>
  </div>
  ${S.hist.length?`<div class="card"><span class="eyebrow">Mock test history</span>${S.hist.slice(-5).reverse().map(h=>`<div class="hist"><span>${h.d}</span><b>${h.c}/${h.t}</b><span>≈${level(100*h.c/h.t)}*</span></div>`).join('')}</div>`:''}
  <p class="mut small">* The level is a rough <b>estimate</b> from practice scores, not an official TCF result. The real TCF scores 100–699; B1 is roughly 300–399.</p>
- <p class="site-credit"><a href="https://underkover.com" target="_blank" rel="noopener">by underkover</a><span aria-hidden="true"> · </span><a href="terms.html">Terms</a></p>
+ <div class="scene">${ART('scene-band-wide','sw')}${ART('scene-band-mobile','sm')}</div>
+<p class="site-credit"><a href="https://underkover.com" target="_blank" rel="noopener">by underkover</a><span aria-hidden="true"> · </span><a href="terms.html">Terms</a></p>
  <button class="btn ghost w" onclick="if(confirm('Erase all progress, points and practice days?')){localStorage.removeItem(KEY);location.reload()}">Reset progress</button>${tabs('home')}`}
 function askSkip(onSave,onSkip){const prev=document.activeElement,m=document.createElement('div');m.className='modal-bg';
  m.innerHTML=`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt" aria-describedby="md"><h3 id="mt">Vous avez choisi une réponse.</h3><p id="md">Valider cette réponse ou passer sans répondre&nbsp;?<br><span class="mut">You picked an answer. Save it or skip?</span></p><button class="btn pri w" id="m-save">Valider ma réponse <span class="en">save</span></button><button class="btn ghost w" id="m-skip">Passer sans répondre <span class="en">skip</span></button><button class="btn link w" id="m-x">Annuler <span class="en">cancel</span></button></div>`;
@@ -62,6 +63,8 @@ function askSkip(onSave,onSkip){const prev=document.activeElement,m=document.cre
  document.addEventListener('keydown',kd,true);m.onclick=e=>{if(e.target===m)close()};
  m.querySelector('#m-save').onclick=()=>close(onSave);m.querySelector('#m-skip').onclick=()=>close(onSkip);m.querySelector('#m-x').onclick=()=>close();
  bs[0].focus()}
+const ART=(n,c)=>`<picture class="art ${c}" aria-hidden="true"><source media="(prefers-color-scheme:dark)" srcset="art/dark/${n}.webp"><img src="art/${n}.webp" alt="" loading="lazy" decoding="async"></picture>`;
+const EMB={L:'emblem-listening',R:'emblem-reading'};
 function firstUn(k){const d=SEC[k].d;for(let i=0;i<d.length;i++)if(!(i in S.ans[k]))return i;return 0}
 // ---- question card
 function qHTML(k,q,chosen,show,sel){let h='';
@@ -86,7 +89,7 @@ function quiz({k,i}){const d=SEC[k].d,q=d[i],ch=S.ans[k][i],show=ch!==undefined;
  render();
  if(show){const ok=ch===q.a;showBanner(ok,ok?'Correct'+(arguments[0].fresh?' · +10 pts':''):'Pas tout à fait · answer '+'ABCD'[q.a],esc(q.e),'Question suivante',next)}}
 function results(k){const[c,t]=score(k),p=t?100*c/t:0;topSes(1);
- app.innerHTML=`<div class="anim" style="text-align:center"><div class="big">${ring(p/100,120,8)}<b>${Math.round(p)}%</b></div><h2>${SEC[k].n}</h2><p>${lvlTxt(c,t)}</p><p class="mut">Answered ${t} of ${SEC[k].d.length}. * Estimate only, not an official TCF result.</p></div>
+ app.innerHTML=`<div class="anim" style="text-align:center">${ART('emblem-results','resart')}<div class="big">${ring(p/100,120,8)}<b>${Math.round(p)}%</b></div><h2>${SEC[k].n}</h2><p>${lvlTxt(c,t)}</p><p class="mut">Answered ${t} of ${SEC[k].d.length}. * Estimate only, not an official TCF result.</p></div>
  ${foot(`<div class="row"><button class="btn ghost" onclick="if(confirm('Clear answers for this section?')){S.ans['${k}']={};save();go('quiz',{k:'${k}',i:0})}">Refaire</button><button class="btn pri" onclick="go('home')">Continuer</button></div>`)}`;
  if(p>=70)confetti(160)}
 // ---- mock
