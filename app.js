@@ -54,6 +54,14 @@ function home(){topHome();
  <p class="mut small">* The level is a rough <b>estimate</b> from practice scores, not an official TCF result. The real TCF scores 100–699; B1 is roughly 300–399.</p>
  <p class="site-credit"><a href="https://underkover.com" target="_blank" rel="noopener">by underkover</a><span aria-hidden="true"> · </span><a href="terms.html">Terms</a></p>
  <button class="btn ghost w" onclick="if(confirm('Erase all progress, points and practice days?')){localStorage.removeItem(KEY);location.reload()}">Reset progress</button>${tabs('home')}`}
+function askSkip(onSave,onSkip){const prev=document.activeElement,m=document.createElement('div');m.className='modal-bg';
+ m.innerHTML=`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt" aria-describedby="md"><h3 id="mt">Vous avez choisi une réponse.</h3><p id="md">Valider cette réponse ou passer sans répondre&nbsp;?<br><span class="mut">You picked an answer. Save it or skip?</span></p><button class="btn pri w" id="m-save">Valider ma réponse <span class="en">save</span></button><button class="btn ghost w" id="m-skip">Passer sans répondre <span class="en">skip</span></button><button class="btn link w" id="m-x">Annuler <span class="en">cancel</span></button></div>`;
+ document.body.appendChild(m);const bs=[...m.querySelectorAll('button')];
+ const close=f=>{m.remove();document.removeEventListener('keydown',kd,true);if(f)f();else if(prev&&prev.focus)prev.focus()};
+ const kd=e=>{if(e.key==='Escape'){e.preventDefault();close()}else if(e.key==='Tab'){const a=bs.indexOf(document.activeElement),n=e.shiftKey?(a<=0?bs.length-1:a-1):(a+1)%bs.length;e.preventDefault();bs[n].focus()}};
+ document.addEventListener('keydown',kd,true);m.onclick=e=>{if(e.target===m)close()};
+ m.querySelector('#m-save').onclick=()=>close(onSave);m.querySelector('#m-skip').onclick=()=>close(onSkip);m.querySelector('#m-x').onclick=()=>close();
+ bs[0].focus()}
 function firstUn(k){const d=SEC[k].d;for(let i=0;i<d.length;i++)if(!(i in S.ans[k]))return i;return 0}
 // ---- question card
 function qHTML(k,q,chosen,show,sel){let h='';
@@ -69,9 +77,12 @@ function quiz({k,i}){const d=SEC[k].d,q=d[i],ch=S.ans[k][i],show=ch!==undefined;
  const next=()=>i<d.length-1?go('quiz',{k,i:i+1}):go('results',k);
  const render=()=>{app.innerHTML=`<div class="anim">${tag(k)} <span class="mut">Question ${i+1}/${d.length}</span><div style="height:8px"></div>${qHTML(k,q,ch,show,sel)}</div>
   ${show?'':foot(`<button class="btn pri w" id="chk" ${sel===null?'disabled':''}>Valider la réponse</button>`)}
-  <div class="row nav" style="margin-top:6px"><button class="btn ghost" ${i?'':'disabled'} onclick="go('quiz',{k:'${k}',i:${i-1}})">←</button><button class="btn ghost" onclick="go('quiz',{k:'${k}',i:${(i+1)%d.length}})">Passer →</button></div>`;
+  <div class="row nav qnav"><button class="btn ghost back" aria-label="Question précédente" ${i?'':'disabled'} onclick="go('quiz',{k:'${k}',i:${i-1}})">←</button><button class="btn link skip" id="skip">Passer <span class="en">skip</span> →</button></div>`;
   app.querySelectorAll('.opt:not([disabled])').forEach(b=>b.onclick=()=>{sel=+b.dataset.j;render()});
-  const c=$('#chk');if(c)c.onclick=()=>{S.ans[k][i]=sel;const ok=sel===q.a;if(ok){addXP(10);confetti()}else addXP(2);go('quiz',{k,i,fresh:1})}};
+  const commit=()=>{S.ans[k][i]=sel;const ok=sel===q.a;if(ok){addXP(10);confetti()}else addXP(2);go('quiz',{k,i,fresh:1})};
+  const skip=()=>go('quiz',{k,i:(i+1)%d.length});
+  const c=$('#chk');if(c)c.onclick=commit;
+  $('#skip').onclick=()=>{if(show||sel===null)return skip();askSkip(commit,skip)}};
  render();
  if(show){const ok=ch===q.a;showBanner(ok,ok?'Correct'+(arguments[0].fresh?' · +10 pts':''):'Pas tout à fait · answer '+'ABCD'[q.a],esc(q.e),'Question suivante',next)}}
 function results(k){const[c,t]=score(k),p=t?100*c/t:0;topSes(1);
