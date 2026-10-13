@@ -159,3 +159,5 @@ body[data-v=home]::after{content:"";position:fixed;right:0;top:56px;width:170px;
 .why{margin-top:12px;font-family:var(--sans);font-size:14.5px;white-space:normal}.why ul{margin:6px 0 0;padding-left:18px}
 .pp h1{margin-bottom:14px}.opt.pick{align-items:center}.opt.pick>span:nth-child(2){flex:1}.opt.pick .k{width:auto;padding:0 8px;min-width:34px}
 .card.soon{border-color:var(--a);background:var(--al)}
+
+.beta{margin:14px 0 4px;text-align:center}.beta a{color:var(--a)}

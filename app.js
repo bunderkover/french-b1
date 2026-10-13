@@ -7,7 +7,7 @@ function migrate(){if(localStorage.getItem(KEY)||!localStorage.getItem(OLD))retu
   localStorage.setItem(KEY,JSON.stringify(n));localStorage.removeItem(OLD)}catch(e){console.warn('migration failed',e)}}
 migrate();
 let S=JSON.parse(localStorage.getItem(KEY)||'{}');S.ans=S.ans||{};S.w=S.w||{};S.hist=S.hist||[];S.xp=S.xp||0;S.streak=S.streak||0;S.spk=S.spk||{};S.level=S.level||'B2';
-const B2ON=()=>PREVIEW&&typeof B2!=='undefined';
+const B2ON=()=>typeof B2!=='undefined';
 const LV=()=>S.level==='B2'&&B2ON()?'B2':'B1';
 const save=()=>localStorage.setItem(KEY,JSON.stringify(S));
 const POOL={R:READING,G:GRAMMAR,L:LISTENING};
@@ -24,6 +24,8 @@ function applyCopy(){const c=COPY[LV()];document.title=c.t;let m=document.queryS
 function lvToggle(){const lv=LV();return `<div class="lvt" role="group" aria-label="Practice level">${['B1','B2'].map(l=>`<button class="${lv===l?'on':''}" aria-pressed="${lv===l}" onclick="setLevel('${l}')">${l}${l==='B2'&&!B2ON()?'<small>soon</small>':''}</button>`).join('')}</div>`}
 function setLevel(l){if(l==='B2'&&!B2ON()){S.level='B2';save();return comingSoon()}S.level=l;save();buildSEC();go(document.body.dataset.v==='welcome'?'welcome':'home')}
 function comingSoon(){const m=document.createElement('div');m.className='modal-bg';m.innerHTML=`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="cs"><h3 id="cs">B2 practice is coming soon</h3><p>B2 questions are being checked by a native French teacher before they go live. Meanwhile, B1 practice builds the base you need for B2.</p><button class="btn pri w" id="cs-ok">Continue with B1</button></div>`;document.body.appendChild(m);const b=m.querySelector('#cs-ok');const close=()=>{m.remove();document.removeEventListener('keydown',kd,true)};const kd=e=>{if(e.key==='Escape'||e.key==='Tab'){e.preventDefault();if(e.key==='Escape')close()}};document.addEventListener('keydown',kd,true);b.onclick=close;m.onclick=e=>{if(e.target===m)close()};b.focus()}
+const BETA=`<p class="beta mut small">B2 questions are in beta. Spot a mistake? Tell us via <a href="https://underkover.com" target="_blank" rel="noopener">underkover.com</a>.</p>`;
+const betaIf=q=>q&&q.lvl==='B2'?BETA:'';
 const AN=(k,i)=>S.ans[SEC[k].d[i].id];
 const answered=k=>SEC[k].d.filter(q=>q.id in S.ans).length;
 const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -67,7 +69,7 @@ function tabs(cur){const t=[['home','Accueil','M3 10l7-6 7 6v7H3z'],['mockStart'
 function foot(html){return `<div class="foot"><div>${html}</div></div>`}
 // ---- router
 function go(v,arg){stopTimer();hideBanner();stopAudio();scrollTo(0,0);
- if(v!=='mock')mock=null;document.body.dataset.v=v;({home,quiz,writing,speaking,mockStart,results,welcome,purpose}[v]||home)(arg)}
+ if(v!=='mock')mock=null;document.body.dataset.v=v;({home,quiz,writing,speaking,mockStart,results,welcome,purpose}[v]||home)(arg);if(['writing','speaking','mockStart','results'].includes(v)&&LV()==='B2')app.insertAdjacentHTML('beforeend',BETA)}
 function home(){topHome();
  const st=streakAlive(),all=['L','G','R'].map(k=>score(k)),tot=all.reduce((a,b)=>a+b[1],0),N=['L','G','R'].reduce((a,k)=>a+SEC[k].d.length,0),lv=LV(),other=lv==='B2'?'B1':'B2';
  const wd=WR.filter(w=>S.w[w.id]&&S.w[w.id].t&&S.w[w.id].t.trim()).length,sd=SP.filter(x=>S.spk[x.id]).length,h=new Date().getHours();
@@ -81,7 +83,7 @@ function home(){topHome();
   <button class="tile exam anim" onclick="go('mockStart')"><span class="eyebrow">Examen blanc</span><span class="tt">${lv==="B2"?"Mock test · IRN style":"Short mock · IRN style"}</span><span class="meta">${lv} · listening then reading · separate timers</span><span class="arrow" aria-hidden="true">→</span></button>
  </div>
  ${S.hist.filter(h=>h.t&&(h.lv||'B1')===lv).length?`<div class="card"><span class="eyebrow">Mock test history · ${lv}</span>${S.hist.filter(h=>h.t&&(h.lv||'B1')===lv).slice(-5).reverse().map(h=>`<div class="hist"><span>${h.d}</span><b>${h.L?`L ${h.L[0]}/${h.L[1]} · R ${h.R[0]}/${h.R[1]}`:`${h.c}/${h.t}`}</b><span>${h.lab||level(100*h.c/h.t)}*</span></div>`).join('')}</div>`:''}
- ${!B2ON()&&S.level==='B2'?`<div class="card soon"><span class="eyebrow">B2 · French nationality</span>B2 practice is coming soon, after a native-speaker review. Meanwhile, B1 practice builds the base.</div>`:''}
+ ${lv==='B2'?BETA:''}
  <p class="mut small">* Estimate only, not an official TCF result. ${lv==='B2'?'B2 ready = 70%+ on B2 questions and 85%+ on B1 questions; close to B2 = 55–69% on B2; shown after 15 answers per level in a section.':'B1 ready ≥75%, close 55–74%, not yet &lt;55%, from B1 questions; shown after 15 answers in a section.'} In the real TCF IRN, listening and reading are scored out of 499 (B1 = 300–399, B2 = 400–499) and writing and speaking out of 20 (B1 = 6–9, B2 = 10–13).</p>
  <div class="scene">${ART('scene-band-wide','sw')}${ART('scene-band-mobile','sm')}</div>
 <p class="site-credit"><a href="https://underkover.com" target="_blank" rel="noopener">by underkover</a><span aria-hidden="true"> · </span><a href="terms.html">Terms</a></p>
@@ -113,7 +115,7 @@ function quiz({k,i}){const d=SEC[k].d,q=d[i];if(!q)return go('home');const ch=S.
  const next=()=>i<d.length-1?go('quiz',{k,i:i+1}):go('results',k);
  const render=()=>{app.innerHTML=`<div class="anim">${tag(k)} <span class="mut">Question ${i+1}/${d.length}</span><div style="height:8px"></div>${qHTML(k,q,ch,show,sel)}</div>
   ${show?'':foot(`<button class="btn pri w" id="chk" ${sel===null?'disabled':''}>Valider la réponse</button>`)}
-  <div class="row nav qnav"><button class="btn ghost back" aria-label="Question précédente" ${i?'':'disabled'} onclick="go('quiz',{k:'${k}',i:${i-1}})">←</button><button class="btn link skip" id="skip">Passer <span class="en">skip</span> →</button></div>`;
+  ${betaIf(q)}<div class="row nav qnav"><button class="btn ghost back" aria-label="Question précédente" ${i?'':'disabled'} onclick="go('quiz',{k:'${k}',i:${i-1}})">←</button><button class="btn link skip" id="skip">Passer <span class="en">skip</span> →</button></div>`;
   app.querySelectorAll('.opt:not([disabled])').forEach(b=>b.onclick=()=>{sel=+b.dataset.j;render()});
   const commit=()=>{S.ans[q.id]=sel;const ok=sel===q.a;if(ok){addXP(10);confetti()}else addXP(2);go('quiz',{k,i,fresh:1})};
   const skip=()=>i===d.length-1?go('results',k):go('quiz',{k,i:i+1});
@@ -191,7 +193,7 @@ function welcome(){top_.className='wl';top_.innerHTML=`<div class="brand">${lvTo
  app.innerHTML=`<section class="wel">
  <div class="wel-hero anim"><p class="eyebrow">Free practice · TCF IRN · niveau ${LV()}</p>
  <h1 class="display">Le français<br><i>pour vivre en France.</i></h1>
- <p class="lede">Free practice for the <b>TCF IRN</b>. <b>B1</b> for the 10-year residence card, <b>B2</b> for French nationality. ${B2ON()?'Choose B1 or B2 at the top.':'Questions here are at B1 level for now; B2 is coming soon.'} Short daily sessions, explained in English.</p><p class="rules small"><b>Rules changed on 1 Jan 2026:</b> nationality (naturalisation or marriage) now needs B2, the 10-year card B1, a first multi-year card A2. <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F11926" target="_blank" rel="noopener">Nationality</a> · <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F34501" target="_blank" rel="noopener">Residence cards</a> (service-public.gouv.fr). Check with your préfecture and test centre which test version they accept.</p>
+ <p class="lede">Free practice for the <b>TCF IRN</b>. <b>B1</b> for the 10-year residence card, <b>B2</b> for French nationality. Choose B1 or B2 at the top. Short daily sessions, explained in English.</p><p class="rules small"><b>Rules changed on 1 Jan 2026:</b> nationality (naturalisation or marriage) now needs B2, the 10-year card B1, a first multi-year card A2. <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F11926" target="_blank" rel="noopener">Nationality</a> · <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F34501" target="_blank" rel="noopener">Residence cards</a> (service-public.gouv.fr). Check with your préfecture and test centre which test version they accept.</p>
  <div class="cta"><button class="btn acc" onclick="startApp()">Commencer <span aria-hidden="true">→</span></button><a class="lnk" href="#inside" onclick="event.preventDefault();document.getElementById('inside').scrollIntoView({behavior:'smooth'})">What's inside</a></div>
  ${ARTD('hero-accent','whero')}<div class="stamp" aria-hidden="true"><span>${LV()}</span><small>practice level</small></div></div>
  <h2 id="inside" class="anim">What's inside</h2>
@@ -219,4 +221,4 @@ function purpose(){top_.className='wl';top_.innerHTML=`<div class="brand">${lvTo
  <button class="btn link w" onclick="pickGoal('skip')">Skip</button></section>`}
 function pickGoal(g){S.goal=g;S.level=g==='B2'||g==='skip'?'B2':'B1';save();buildSEC();go('home')}
 function boot(){buildSEC();go(!localStorage.getItem(SEEN)?'welcome':S.goal?'home':'purpose')}
-if(PREVIEW){let n=0;const done=()=>{if(++n===2)boot()};['data-b2.js?v=1','audio/map-b2.js?v=1'].forEach(src=>{const e=document.createElement('script');e.src=src;e.onload=done;e.onerror=done;document.body.appendChild(e)})}else boot();
+boot();
