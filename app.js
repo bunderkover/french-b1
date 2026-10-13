@@ -64,6 +64,7 @@ function askSkip(onSave,onSkip){const prev=document.activeElement,m=document.cre
  m.querySelector('#m-save').onclick=()=>close(onSave);m.querySelector('#m-skip').onclick=()=>close(onSkip);m.querySelector('#m-x').onclick=()=>close();
  bs[0].focus()}
 const ART=(n,c)=>`<picture class="art ${c}" aria-hidden="true"><source media="(prefers-color-scheme:dark)" srcset="art/dark/${n}.webp"><img src="art/${n}.webp" alt="" loading="lazy" decoding="async"></picture>`;
+const ARTD=(n,c)=>`<span class="art ${c}" aria-hidden="true"><img src="art/${n}.webp" alt="" loading="lazy" decoding="async"></span>`;
 const EMB={L:'emblem-listening',R:'emblem-reading'};
 function firstUn(k){const d=SEC[k].d;for(let i=0;i<d.length;i++)if(!(i in S.ans[k]))return i;return 0}
 // ---- question card
@@ -139,24 +140,25 @@ function speaking(n){const s=SPEAKING[n];let left,phase;topSes((n+1)/SPEAKING.le
   timerId=setInterval(()=>{left--;$('#tm').textContent=fmt(left);if(left<=0){if(phase==='prep'){phase='talk';left=s.sec;$('#ph').textContent='Parlez !'}else{stopTimer();$('#ph').textContent='Terminé';navigator.vibrate&&navigator.vibrate(300);if(!S.spk[n]){S.spk[n]=1;addXP(15)}confetti();showBanner(true,'Time · +15 pts','Now compare with the model answer.','OK',hideBanner)}}},1000)}}
 const SEEN='tcfb1_seen';
 function welcome(){top_.className='wl';top_.innerHTML=`<div class="brand"><div class="brand-row"><span class="mono">tcf</span><em>B1</em></div><a class="by" href="https://underkover.com" target="_blank" rel="noopener">by underkover</a></div><button class="pill" onclick="startApp()">${localStorage.getItem(SEEN)?'Mon tableau →':'Passer →'}</button>`;
- const f=(n,t,d)=>`<li class="anim"><span class="num">${n}</span><div><b>${t}</b><span>${d}</span></div></li>`;
+ const f=(n,t,d,e)=>`<li class="anim"><span class="num">${n}</span><div><b>${t}</b><span>${d}</span></div>${e?ARTD(e,'wemb'):''}</li>`;
  app.innerHTML=`<section class="wel">
  <div class="wel-hero anim"><p class="eyebrow">Free practice · TCF / DELF niveau B1</p>
  <h1 class="display">Le français<br><i>pour la nationalité.</i></h1>
  <p class="lede">Free practice for the <b>TCF or DELF at level B1</b>, the French-language level you need for French nationality, for example by marriage. Short daily sessions, explained in English.</p>
  <div class="cta"><button class="btn acc" onclick="startApp()">Commencer <span aria-hidden="true">→</span></button><a class="lnk" href="#inside" onclick="event.preventDefault();document.getElementById('inside').scrollIntoView({behavior:'smooth'})">What's inside</a></div>
- <div class="stamp" aria-hidden="true"><span>B1</span><small>CECRL · CEFR</small></div></div>
+ ${ARTD('hero-accent','whero')}<div class="stamp" aria-hidden="true"><span>B1</span><small>CECRL · CEFR</small></div></div>
  <h2 id="inside" class="anim">What's inside</h2>
- <ol class="feat">${f('01','Compréhension orale',`Listening: ${LISTENING.length} questions read aloud by a French (fr-FR) voice, with normal and slow replay.`)}
- ${f('02','Compréhension écrite',`Reading: ${READING.length} questions on everyday texts.`)}
+ <ol class="feat">${f('01','Compréhension orale',`Listening: ${LISTENING.length} questions read aloud by a French (fr-FR) voice, with normal and slow replay.`,'emblem-listening')}
+ ${f('02','Compréhension écrite',`Reading: ${READING.length} questions on everyday texts.`,'emblem-reading')}
  ${f('03','Structures de la langue',`Grammar & vocabulary: ${GRAMMAR.length} questions.`)}
- ${f('04','Expression écrite',`Writing: ${WRITING.length} tasks with a word counter, checklist and model answers.`)}
- ${f('05','Expression orale',`Speaking: ${SPEAKING.length} timed tasks with model answers you can listen to.`)}
- ${f('30′','Examen blanc',`A 30-minute mock test with 30 mixed questions and full corrections.`)}</ol>
+ ${f('04','Expression écrite',`Writing: ${WRITING.length} tasks with a word counter, checklist and model answers.`,'emblem-writing')}
+ ${f('05','Expression orale',`Speaking: ${SPEAKING.length} timed tasks with model answers you can listen to.`,'emblem-speaking')}
+ ${f('30′','Examen blanc',`A 30-minute mock test with 30 mixed questions and full corrections.`,'emblem-results')}</ol>
  <div class="facts"><div class="card anim"><span class="eyebrow">In English</span>Every answer comes with a short English explanation.</div>
  <div class="card anim"><span class="eyebrow">Private</span>No account, no sign-up. Your progress stays on this device, in this browser.</div>
  <div class="card anim"><span class="eyebrow">Estimate only</span>Levels shown here are rough estimates from practice, not an official TCF or DELF result.</div></div>
  <button class="btn acc w big-cta" onclick="startApp()">Commencer <span aria-hidden="true">→</span></button>
+ <div class="scene wscene">${ARTD('scene-band-wide','sw')}${ARTD('scene-band-mobile','sm')}</div>
  <p class="mut small">Not affiliated with France Éducation international, which runs the TCF and DELF. Questions are practice material and may differ from the real exam.</p>
  <p class="site-credit"><a href="https://underkover.com" target="_blank" rel="noopener">by underkover</a><span aria-hidden="true"> · </span><a href="terms.html">Terms</a></p></section>`}
 function startApp(){localStorage.setItem(SEEN,'1');go('home')}

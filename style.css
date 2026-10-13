@@ -133,3 +133,14 @@ label.chk{display:flex;gap:10px;margin:8px 0;font-size:15px;align-items:flex-sta
 body[data-v=home]::after{content:"";position:fixed;right:0;top:56px;width:170px;height:170px;background:url(art/corner-accent.webp) no-repeat right top/contain;transform:scaleX(-1);opacity:.4;pointer-events:none;z-index:0}
 @media(prefers-color-scheme:dark){body[data-v=home]::after{background-image:url(art/dark/corner-accent.webp);opacity:.25}}
 @media(max-width:1199px){body[data-v=home]::after{display:none}}
+
+/* intro watercolours (navy) */
+.feat li{align-items:center}.feat li>div{flex:1}
+.wemb{flex:none;width:58px;height:58px;border-radius:50%;background:#f3efe6;padding:6px;box-sizing:border-box;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.whero{display:block;width:min(70%,280px);margin:18px auto 0}
+@media(min-width:900px){.whero{position:absolute;right:0;top:250px;width:280px;margin:0}}
+.wemb{background:#fff;box-shadow:0 2px 10px rgba(14,21,36,.1)}
+/* intro always uses the light theme so the watercolours blend */
+@media(prefers-color-scheme:dark){body[data-v=welcome]{--bg:#eceff3;--surf:#f8f9fb;--surf2:#e2e6ec;--tx:#0e1524;--mut:#4f5868;--line:#cfd5de;--a:#c2391c;--a2:#9e2c13;--al:#fbe4dc;--ink:#0e1524;--onink:#eceff3;color-scheme:light}
+ html:has(body[data-v=welcome]){background:#eceff3}body[data-v=welcome] .btn.acc{color:#fff}}
+.wscene{border-radius:18px}.wscene img{opacity:.9}
