@@ -150,3 +150,12 @@ body[data-v=home]::after{content:"";position:fixed;right:0;top:56px;width:170px;
 .q{font:500 21px/1.35 var(--sans);letter-spacing:-.005em}
 @media(min-width:768px){.q{font-size:23px}}
 .rules{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:10px 14px;max-width:560px;line-height:1.45}.rules a{color:var(--a)}
+/* level toggle (B1/B2) */
+.lvt{display:inline-flex;background:var(--surf2);border:1px solid var(--line);border-radius:99px;padding:3px;gap:2px}
+.lvt button{border:0;background:transparent;color:var(--tx);font:600 14px/1 var(--sans);padding:8px 14px;border-radius:99px;cursor:pointer;min-height:36px;display:inline-flex;align-items:center;gap:5px}
+.lvt button.on{background:var(--ink);color:var(--onink)}
+.lvt small{font:500 10px/1 var(--sans);opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+.navbrand .lvt{margin:6px 0 2px;font-size:14px}
+.why{margin-top:12px;font-family:var(--sans);font-size:14.5px;white-space:normal}.why ul{margin:6px 0 0;padding-left:18px}
+.pp h1{margin-bottom:14px}.opt.pick{align-items:center}.opt.pick>span:nth-child(2){flex:1}.opt.pick .k{width:auto;padding:0 8px;min-width:34px}
+.card.soon{border-color:var(--a);background:var(--al)}
