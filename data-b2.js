@@ -1,4 +1,4 @@
-// B2 items: LLM-written, pending native-speaker review. Loaded only with ?preview=b2.
+// B2 items: LLM-written, pending native-speaker review. Public beta.
 const B2={READING:[
 {
 "id": "R-B2-001",
@@ -37,7 +37,7 @@ const B2={READING:[
 "Exiger une réparation en évoquant une démarche possible",
 "Se plaindre d'un voisin bruyant",
 "Remercier le propriétaire pour une réparation",
-"Annoncer un départ de l'appartement"
+"Annoncer qu'il quitte l'appartement à cause de la fuite dans la salle de bains"
 ],
 "a": 0,
 "e": "The tenant asks for a repair \"dans les meilleurs délais\" and warns: \"faute de quoi\" (otherwise) he will take the matter to the conciliation committee: a formal demand with a threat of further action."
@@ -50,7 +50,7 @@ const B2={READING:[
 "o": [
 "Les clients d'une terrasse de café autorisée",
 "Personne, sans exception",
-"Les habitants du centre historique",
+"Les habitants du centre historique, à condition de rester près de chez eux",
 "Tout le monde avant le 1er juin seulement"
 ],
 "a": 0,
@@ -64,7 +64,7 @@ const B2={READING:[
 "o": [
 "Les mangas sont meilleurs que les romans",
 "Les jeunes ne lisent plus du tout",
-"Les chercheurs sont tous d'accord",
+"Les chercheurs sont tous d'accord pour dire que les jeunes lisent moins qu'avant",
 "Les jeunes lisent autrement, mais les effets sont débattus"
 ],
 "a": 3,
@@ -78,7 +78,7 @@ const B2={READING:[
 "o": [
 "Les associations sont contre la mesure",
 "Le manque de financement pourrait menacer certaines lignes",
-"La mesure coûte trop cher aux familles",
+"La mesure coûtera trop cher aux familles qui utilisent déjà les transports",
 "Les jeunes n'utiliseront pas les transports"
 ],
 "a": 1,
@@ -92,7 +92,7 @@ const B2={READING:[
 "o": [
 "Adapter l'organisation à chaque équipe",
 "Obliger les salariés à venir au bureau",
-"Généraliser le télétravail à tous",
+"Généraliser le télétravail à tous les salariés, sans aucune exception",
 "Supprimer le télétravail"
 ],
 "a": 0,
@@ -105,7 +105,7 @@ const B2={READING:[
 "q": "Pourquoi les habitants fréquentent-ils peu le centre ?",
 "o": [
 "Il n'est pas encore ouvert",
-"Il est trop éloigné du quartier",
+"Il est trop éloigné du quartier et mal desservi par les transports en commun",
 "Les prix et le programme ne leur conviennent pas",
 "Il ferme à la rentrée"
 ],
@@ -119,7 +119,7 @@ const B2={READING:[
 "q": "Que peuvent faire les usagers pendant la fermeture ?",
 "o": [
 "Emprunter des livres le soir",
-"Réserver des livres en ligne",
+"Réserver des livres en ligne et venir les chercher à l'accueil",
 "Payer leurs pénalités de retard",
 "Rendre leurs livres dans une boîte à l'entrée"
 ],
@@ -132,7 +132,7 @@ const B2={READING:[
 "t": "Chaque été, le même débat revient : faut-il limiter l'accès des touristes à certains sites naturels ? Les défenseurs de l'environnement le réclament depuis longtemps. Les commerçants, qui vivent en grande partie de cette fréquentation, craignent au contraire une baisse de leur chiffre d'affaires. Entre ces deux positions, quelques communes expérimentent un système de réservation gratuite, qui étale les visites sans les réduire.",
 "q": "Quelle solution certaines communes testent-elles ?",
 "o": [
-"Une taxe élevée pour les touristes",
+"Une taxe élevée pour les touristes qui visitent les sites naturels en été",
 "La fermeture des commerces en été",
 "Une réservation gratuite pour mieux répartir les visiteurs",
 "L'interdiction totale des visites"
@@ -149,7 +149,7 @@ const B2={READING:[
 "L'interdiction par les entreprises",
 "Le manque de plateformes",
 "La peur de dépendre des horaires d'un autre",
-"Son coût trop élevé"
+"Son coût trop élevé par rapport au prix d'un abonnement de transport"
 ],
 "a": 2,
 "e": "\"Ce qui freine les salariés, c'est surtout la crainte de dépendre des horaires d'un collègue\". The money argument \"ne suffit pas\" (is not enough)."
@@ -160,7 +160,7 @@ const B2={READING:[
 "t": "Je l'avoue : j'ai longtemps méprisé les séries télévisées, que je considérais comme un divertissement sans ambition. Il a fallu qu'une amie m'impose les deux premiers épisodes d'une série danoise pour que je change d'avis. L'écriture, le jeu des acteurs, la lenteur assumée : tout m'a rappelé les meilleurs romans.",
 "q": "Comment l'opinion de l'auteur a-t-elle évolué ?",
 "o": [
-"Il a toujours préféré les romans aux séries",
+"Il a toujours préféré les romans aux séries et n'a jamais changé d'avis",
 "Il méprisait les séries et a fini par les apprécier",
 "Il n'a pas aimé la série danoise",
 "Il aimait les séries et s'en est lassé"
@@ -175,7 +175,7 @@ const B2={READING:[
 "q": "Quelle est l'idée principale du texte ?",
 "o": [
 "Il faut toujours acheter local",
-"Les tomates espagnoles sont de mauvaise qualité",
+"Les tomates espagnoles sont de mauvaise qualité et polluent davantage",
 "Les serres sont interdites en France",
 "La saison de production peut compter plus que la distance"
 ],
@@ -185,7 +185,7 @@ const B2={READING:[
 {
 "id": "R-B2-014",
 "lvl": "B2",
-"t": "Objet : votre candidature au poste d'assistant de direction\nMadame,\nNous avons bien reçu votre candidature et vous en remercions. Votre profil a retenu toute notre attention ; toutefois, nous avons choisi de donner suite à une candidature correspondant plus étroitement aux exigences du poste. Nous conservons votre dossier et ne manquerons pas de revenir vers vous si une opportunité se présentait.",
+"t": "Objet : votre candidature au poste d'assistant de direction\nMadame,\nNous avons bien reçu votre candidature et vous en remercions. Votre profil a retenu toute notre attention ; toutefois, nous avons choisi de donner suite à une candidature correspondant plus étroitement aux exigences du poste. Nous conservons votre dossier : si une opportunité se présentait, nous ne manquerions pas de revenir vers vous.",
 "q": "Que signifie cette lettre pour la candidate ?",
 "o": [
 "Sa candidature n'est pas retenue pour ce poste",
@@ -202,9 +202,9 @@ const B2={READING:[
 "t": "Le bénévolat associatif connaît une mutation profonde. Les Français ne s'engagent pas moins qu'avant, mais autrement : ils préfèrent des missions ponctuelles et précises à un engagement régulier sur plusieurs années. Pour les associations, habituées à compter sur un noyau stable de fidèles, l'adaptation est parfois douloureuse.",
 "q": "Selon le texte, comment l'engagement bénévole a-t-il changé ?",
 "o": [
-"Ils s'engagent pour plusieurs années",
-"Les Français s'engagent beaucoup moins",
-"Ils préfèrent des missions courtes et ciblées",
+"Les bénévoles s'engagent désormais pour plusieurs années de suite",
+"Les bénévoles s'engagent beaucoup moins qu'avant",
+"Les bénévoles préfèrent des missions courtes et ciblées",
 "Les associations refusent les nouveaux bénévoles"
 ],
 "a": 2,
@@ -217,7 +217,7 @@ const B2={READING:[
 "q": "Comment les établissements répondent-ils à l'inquiétude des parents ?",
 "o": [
 "Ils ne répondent pas",
-"Ils autorisent le téléphone en cas d'urgence",
+"Ils autorisent les élèves à garder leur téléphone allumé en cas d'urgence",
 "Ils suppriment l'interdiction",
 "Ils rappellent que le secrétariat peut toujours être contacté"
 ],
@@ -231,7 +231,7 @@ const B2={READING:[
 "q": "Quelle est la principale menace pour les librairies selon le texte ?",
 "o": [
 "Le manque de lecteurs",
-"La concurrence des bibliothèques",
+"La concurrence des bibliothèques municipales, qui prêtent les livres gratuitement",
 "Le coût des loyers en centre-ville",
 "L'absence d'auteurs"
 ],
@@ -246,7 +246,7 @@ const B2={READING:[
 "o": [
 "Il est trop long",
 "Ses exemples sont trop limités pour généraliser",
-"Il est contre la semaine de quatre jours",
+"Il rejette l'idée de la semaine de quatre jours dans toutes les entreprises",
 "Il ne parle que de l'industrie"
 ],
 "a": 1,
@@ -261,7 +261,7 @@ const B2={READING:[
 "Le lundi soir",
 "Le mardi soir après 19 heures",
 "Le jeudi matin",
-"Le mercredi après 20 heures"
+"Le mercredi matin, juste avant le passage des services municipaux"
 ],
 "a": 1,
 "e": "Collection moves to Wednesday, and bins go out \"la veille au soir après 19 heures\" = the evening before, i.e. Tuesday after 7 p.m."
@@ -275,7 +275,7 @@ const B2={READING:[
 "Pour créer du lien entre les habitants",
 "Pour réduire les impôts",
 "Parce que les habitants l'exigent",
-"Pour produire beaucoup de légumes"
+"Pour produire beaucoup de légumes et nourrir les familles du quartier"
 ],
 "a": 0,
 "e": "\"C'est… cet argument [le lien social], bien plus que la production alimentaire, qui convainc les municipalités\"."
@@ -287,7 +287,7 @@ const B2={READING:[
 "q": "Quel groupe s'inquiète d'une exclusion ?",
 "o": [
 "Les syndicats",
-"Les clients pressés",
+"Les clients pressés qui font leurs courses à l'heure du déjeuner",
 "Les associations de personnes âgées",
 "Les enseignes"
 ],
@@ -317,7 +317,7 @@ const B2={READING:[
 "Des aménagements pour sécuriser le carrefour",
 "La fermeture de l'école",
 "Un nouveau parking",
-"Le changement des horaires de l'école"
+"Le changement des horaires de l'école pour éviter les heures de pointe"
 ],
 "a": 0,
 "e": "They ask for a speed bump (\"ralentisseur\") and an officer at peak times: measures to make the crossing safe. \"Instamment\" = urgently."
@@ -330,7 +330,7 @@ const B2={READING:[
 "o": [
 "Elle consomme beaucoup d'eau",
 "Elle est inefficace",
-"Elle nuit aux pays producteurs",
+"Elle risque de nuire aux travailleurs des pays producteurs de vêtements",
 "Elle demande des moyens financiers que tous n'ont pas"
 ],
 "a": 3,
@@ -359,7 +359,7 @@ const B2={READING:[
 "Les réunions en elles-mêmes",
 "Le manque de réunions",
 "La manière d'organiser les réunions",
-"Les participants trop nombreux"
+"Le nombre trop élevé de participants invités à chaque réunion"
 ],
 "a": 2,
 "e": "Final sentence: \"Le problème n'est pas la réunion elle-même, mais la façon dont on la conduit\" (the way it is run)."
@@ -373,7 +373,7 @@ const B2={READING:[
 "Une personne de 75 ans au guichet",
 "Un voyageur de 40 ans achetant son billet au guichet",
 "Tous les voyageurs",
-"Un voyageur achetant sur l'application"
+"Un voyageur de 40 ans achetant son billet sur l'application mobile"
 ],
 "a": 1,
 "e": "The surcharge applies to tickets bought at the station, \"sauf\" (except) over-70s and disabled people. Online/app prices stay the same."
@@ -386,7 +386,7 @@ const B2={READING:[
 "o": [
 "Ils ne les connaissent pas",
 "Utiles mais insuffisantes et contraignantes",
-"Suffisantes et peu coûteuses",
+"Suffisantes, peu coûteuses et faciles à mettre en place",
 "Totalement inutiles"
 ],
 "a": 1,
@@ -426,7 +426,7 @@ const B2={READING:[
 "t": "La généralisation des paiements sans contact a fait reculer l'usage des espèces. Pour beaucoup, c'est un progrès : plus rapide, plus hygiénique. Pour d'autres, la disparition progressive de l'argent liquide pose une question de liberté, puisque chaque paiement électronique laisse une trace. Sans parler des personnes qui n'ont pas de compte bancaire.",
 "q": "Quel argument les opposants avancent-ils ?",
 "o": [
-"Les espèces sont plus hygiéniques",
+"Les espèces sont plus hygiéniques et plus rapides à utiliser en caisse",
 "Les paiements électroniques laissent une trace",
 "Le sans contact est trop lent",
 "Tout le monde a un compte bancaire"
@@ -456,7 +456,7 @@ const B2={READING:[
 "o": [
 "Le prix n'est pas le seul frein à la visite des musées",
 "La fréquentation baisse avec la gratuité",
-"La gratuité attire surtout de nouveaux publics",
+"La gratuité attire surtout de nouveaux publics éloignés de la culture",
 "Les musées doivent augmenter leurs prix"
 ],
 "a": 0,
@@ -485,7 +485,7 @@ const B2={READING:[
 "Le prix des vélos",
 "Les pistes cyclables discontinues",
 "La météo",
-"Le manque d'intérêt pour le sport"
+"Le manque d'intérêt des Français pour le sport en général"
 ],
 "a": 1,
 "e": "\"Encore faut-il que les infrastructures suivent\" = but the infrastructure must keep up. Interrupted cycle lanes make people hesitate \"à franchir le pas\" (to take the plunge)."
@@ -513,7 +513,7 @@ const B2={READING:[
 "Les éoliennes sont inutiles",
 "Les recours en justice sont rares",
 "Impliquer les habitants fait avancer les projets plus vite",
-"Il faut éviter de consulter les habitants"
+"Il faut éviter de consulter les habitants pour ne pas ralentir les projets"
 ],
 "a": 2,
 "e": "\"À l'inverse, les communes qui associent la population… avancent plus vite\". Not consulting leads to legal challenges and delays."
@@ -526,7 +526,7 @@ const B2={READING:[
 "o": [
 "Se méfier de certains avis trop positifs ou imprécis",
 "Ne jamais lire les avis",
-"Faire confiance à tous les avis",
+"Faire confiance à tous les avis, surtout aux plus enthousiastes",
 "Écrire des avis payants"
 ],
 "a": 0,
@@ -553,7 +553,7 @@ const B2={READING:[
 "q": "Pourquoi l'administration fiscale s'intéresse-t-elle à ces plateformes ?",
 "o": [
 "Parce que les objets sont dangereux",
-"Parce que les plateformes sont illégales",
+"Parce que les plateformes de revente sont illégales en France depuis peu",
 "Parce que les prix sont trop bas",
 "Parce que certains vendeurs en tirent un revenu régulier"
 ],
@@ -582,7 +582,7 @@ const B2={READING:[
 "serais parti",
 "étais parti",
 "suis parti",
-"partirais"
+"aurais été parti"
 ],
 "a": 0,
 "e": "Si + plus-que-parfait (avais su) → conditionnel passé (serais parti): an unreal past."
@@ -595,7 +595,7 @@ const B2={READING:[
 "laquelle",
 "qui",
 "dont",
-"que"
+"lesquelles"
 ],
 "a": 0,
 "e": "Penser À quelque chose → à + lequel. Feminine (solution) → à laquelle."
@@ -606,7 +606,7 @@ const B2={READING:[
 "q": "Il a réussi, ___ il n'avait presque pas travaillé.",
 "o": [
 "pour qu'",
-"puisqu'",
+"à moins qu'",
 "bien qu'",
 "alors qu'"
 ],
@@ -685,8 +685,8 @@ const B2={READING:[
 "o": [
 "commencerait",
 "avait commencé",
-"a commencé",
-"commençait"
+"aurait commencé",
+"commence"
 ],
 "a": 1,
 "e": "Plus-que-parfait for an action completed before another past action (arriver)."
@@ -694,15 +694,15 @@ const B2={READING:[
 {
 "id": "G-B2-011",
 "lvl": "B2",
-"q": "C'est en ___ qu'on devient forgeron.",
+"q": "Nous partirons demain, à moins qu'il ne ___.",
 "o": [
-"forgeait",
-"forgeant",
-"forgé",
-"forger"
+"pleuve",
+"pleuvait",
+"pleut",
+"pleuvra"
 ],
-"a": 1,
-"e": "Gérondif (en + participe présent) expresses the means: by forging. A well-known proverb."
+"a": 0,
+"e": "\"À moins que\" (unless) takes the subjunctive, often with the expletive \"ne\": à moins qu'il ne pleuve."
 },
 {
 "id": "G-B2-012",
@@ -736,9 +736,9 @@ const B2={READING:[
 "q": "Voici l'entreprise pour ___ elle travaille depuis dix ans.",
 "o": [
 "lequel",
-"quoi",
+"lesquelles",
 "laquelle",
-"qui"
+"que"
 ],
 "a": 2,
 "e": "After a preposition, a thing takes lequel/laquelle. Entreprise is feminine → pour laquelle."
@@ -759,15 +759,15 @@ const B2={READING:[
 {
 "id": "G-B2-016",
 "lvl": "B2",
-"q": "Il faut que vous ___ ce formulaire avant vendredi.",
+"q": "___ de temps, il n'a pas pu terminer le rapport.",
 "o": [
-"remplissez",
-"remplissiez",
-"remplirez",
-"rempliriez"
+"Malgré",
+"À force",
+"Faute",
+"Au lieu"
 ],
-"a": 1,
-"e": "Il faut que + subjunctive: que vous remplissiez."
+"a": 2,
+"e": "\"Faute de\" + noun = for lack of. Faute de temps = for lack of time. \"À force de\" means by dint of, which doesn't fit."
 },
 {
 "id": "G-B2-017",
@@ -798,10 +798,10 @@ const B2={READING:[
 {
 "id": "G-B2-019",
 "lvl": "B2",
-"q": "___ il pleuve, la fête aura lieu.",
+"q": "___ il pleuve depuis ce matin, la fête aura lieu.",
 "o": [
 "Sauf qu'",
-"Malgré qu'",
+"Puisqu'",
 "Même si",
 "Quoiqu'"
 ],
@@ -829,7 +829,7 @@ const B2={READING:[
 "pourtant",
 "en revanche",
 "par conséquent",
-"bien que"
+"d'autant plus que"
 ],
 "a": 2,
 "e": "The second clause is a result → par conséquent (consequently)."
@@ -842,7 +842,7 @@ const B2={READING:[
 "en revanche",
 "donc",
 "ainsi",
-"de plus"
+"par conséquent"
 ],
 "a": 0,
 "e": "Contrast between two people → en revanche (on the other hand)."
@@ -863,15 +863,15 @@ const B2={READING:[
 {
 "id": "G-B2-024",
 "lvl": "B2",
-"q": "On a observé une forte ___ des prix cette année.",
+"q": "Elle a échoué ___ s'être suffisamment entraînée.",
 "o": [
-"augmentation",
-"augmenter",
-"augmentant",
-"augmenté"
+"au lieu de",
+"faute de",
+"grâce à",
+"à force de"
 ],
-"a": 0,
-"e": "Nominalisation: the verb \"augmenter\" becomes the noun \"une augmentation\" after an article."
+"a": 1,
+"e": "\"Faute de\" + past infinitive = for not having (done). Faute de s'être entraînée = because she hadn't trained enough. \"À force de\" would mean she failed because she trained so much."
 },
 {
 "id": "G-B2-025",
@@ -889,28 +889,28 @@ const B2={READING:[
 {
 "id": "G-B2-026",
 "lvl": "B2",
-"q": "Dans une lettre formelle, laquelle est la formule la plus adaptée ?",
+"q": "Pour peu qu'on lui ___ un peu de temps, il trouvera la solution.",
 "o": [
-"Bonne journée, ciao.",
-"Bisous, à plus !",
-"Je vous prie d'agréer, Madame, l'expression de mes salutations distinguées.",
-"Salut et merci !"
+"laissait",
+"a laissé",
+"laisse",
+"laissera"
 ],
 "a": 2,
-"e": "Register: a formal French letter ends with a set formula like \"Je vous prie d'agréer…\"."
+"e": "\"Pour peu que\" (as long as / if only) takes the subjunctive: qu'on lui laisse (same form as the present indicative for this verb)."
 },
 {
 "id": "G-B2-027",
 "lvl": "B2",
-"q": "Quelle phrase relève d'un registre soutenu ?",
+"q": "Quelle phrase relève d'un registre standard, adapté à une situation formelle ?",
 "o": [
 "J'sais pas.",
 "Je n'en ai pas la moindre idée.",
-"C'est super cool.",
+"Ben, j'en sais franchement rien du tout.",
 "T'as vu le truc ?"
 ],
 "a": 1,
-"e": "\"Je n'en ai pas la moindre idée\" is careful, full-form French (soutenu). The others are familier."
+"e": "\"Je n'en ai pas la moindre idée\" is standard, careful French (full negation with \"ne… pas\", pronoun \"en\"), fine in formal situations. The others are familier: dropped \"ne\", \"j'sais\", \"t'as\", \"ben\"."
 },
 {
 "id": "G-B2-028",
@@ -931,7 +931,7 @@ const B2={READING:[
 "q": "À ta place, je ___ un avocat.",
 "o": [
 "consulterais",
-"consulterai",
+"aurais consulté",
 "consulte",
 "consultais"
 ],
@@ -970,7 +970,7 @@ const B2={READING:[
 "q": "Les résultats ___ demain par le ministère.",
 "o": [
 "seront publiés",
-"seront publier",
+"seront publiées",
 "publieront",
 "sont publié"
 ],
@@ -980,15 +980,15 @@ const B2={READING:[
 {
 "id": "G-B2-033",
 "lvl": "B2",
-"q": "Ces lettres ont été ___ par ma grand-mère.",
+"q": "Le directeur exige que chaque rapport ___ remis avant midi.",
 "o": [
-"écrire",
-"écrits",
-"écrites",
-"écrit"
+"soit",
+"est",
+"serait",
+"sera"
 ],
-"a": 2,
-"e": "In the passive the past participle agrees with the subject: ces lettres (feminine plural) → écrites."
+"a": 0,
+"e": "\"Exiger que\" (to demand that) takes the subjunctive: que chaque rapport soit remis."
 },
 {
 "id": "G-B2-034",
@@ -996,7 +996,7 @@ const B2={READING:[
 "q": "Il a appris la nouvelle en ___ le journal.",
 "o": [
 "lire",
-"lu",
+"lisaient",
 "lisant",
 "lisait"
 ],
@@ -1019,15 +1019,15 @@ const B2={READING:[
 {
 "id": "G-B2-036",
 "lvl": "B2",
-"q": "Le match a été annulé ___ la pluie.",
+"q": "Il n'est pas venu, ___ qu'il était malade.",
 "o": [
-"pour",
-"à cause de",
-"grâce à",
-"afin de"
+"en dépit du fait",
+"de sorte",
+"sous prétexte",
+"à condition"
 ],
-"a": 1,
-"e": "A negative cause → à cause de."
+"a": 2,
+"e": "\"Sous prétexte que\" + indicative = claiming that (often doubtful). \"En dépit du fait que\" (despite) is grammatical but illogical: illness explains not coming."
 },
 {
 "id": "G-B2-037",
@@ -1045,7 +1045,7 @@ const B2={READING:[
 {
 "id": "G-B2-038",
 "lvl": "B2",
-"q": "Il travaille beaucoup, ___ il est rarement fatigué.",
+"q": "Il a passé une nuit blanche, ___ il est en pleine forme ce matin.",
 "o": [
 "parce qu'",
 "d'autant plus qu'",
@@ -1053,7 +1053,7 @@ const B2={READING:[
 "pourtant"
 ],
 "a": 3,
-"e": "Contrast between working a lot and rarely being tired → pourtant (yet)."
+"e": "A night without sleep, yet in great shape → contrast: pourtant (yet). \"Parce qu'\" and \"puisqu'\" give a cause, which makes no sense here."
 },
 {
 "id": "G-B2-039",
@@ -1071,7 +1071,7 @@ const B2={READING:[
 {
 "id": "G-B2-040",
 "lvl": "B2",
-"q": "Elle a parlé ___ nous comprenions tous.",
+"q": "Elle a parlé lentement, ___ nous comprenions tous.",
 "o": [
 "bien que",
 "sans",
@@ -1091,7 +1091,7 @@ const B2={READING:[
 "o": [
 "Elle critique la manière dont il a été mis en place",
 "Elle est totalement contre le télétravail",
-"Elle n'a pas d'avis",
+"Elle n'a pas d'avis précis sur la question du télétravail des jeunes",
 "Elle pense qu'il est idéal pour les jeunes"
 ],
 "a": 0,
@@ -1137,7 +1137,7 @@ const B2={READING:[
 "Le restaurant est bon marché",
 "La vue est décevante",
 "Le lieu est beau mais le service et la cuisine déçoivent",
-"Tout était parfait"
+"Tout était parfait : le cadre, le service et les plats servis bien chauds"
 ],
 "a": 2,
 "e": "\"Disons que…\" introduces the one positive point (the setting). \"Pour le reste\": long wait, lukewarm food, and \"à ce prix-là, on est en droit d'attendre autre chose\" = at that price you expect better."
@@ -1152,7 +1152,7 @@ const B2={READING:[
 "Elle annule la commande",
 "Elle se justifie tout en proposant une compensation",
 "Elle accuse le client",
-"Elle refuse toute responsabilité et tout geste"
+"Elle refuse toute responsabilité et rejette toute forme de compensation pour le client"
 ],
 "a": 1,
 "e": "\"Pas entièrement de notre fait\" = not entirely our fault (justification). \"Cela dit\" + \"un geste commercial\" = a goodwill gesture/compensation."
@@ -1180,8 +1180,8 @@ const B2={READING:[
 "q": "Que doivent faire les voyageurs qui vont à Toulouse ?",
 "o": [
 "Changer de quai immédiatement",
-"Attendre le train de Bordeaux",
-"Aller à l'accueil de la gare",
+"Attendre le train de Bordeaux sur le quai habituel, malgré le retard",
+"Demander une autre solution au personnel de la gare",
 "Prendre un taxi à leurs frais"
 ],
 "a": 2,
@@ -1197,7 +1197,7 @@ const B2={READING:[
 "Elle n'a pas encore commencé",
 "Elle est entièrement satisfaite",
 "Elle a des doutes à cause des trajets",
-"Elle veut un meilleur salaire"
+"Elle veut demander un meilleur salaire avant la fin de sa période d'essai"
 ],
 "a": 2,
 "e": "\"Sur le papier, c'est le rêve\" = in theory it's perfect, but three hours' commuting a day: \"je ne sais pas combien de temps je vais tenir\" (how long I'll last)."
@@ -1227,7 +1227,7 @@ const B2={READING:[
 "Un document manque et le délai approche",
 "La demande a été refusée",
 "Le dossier est complet",
-"Le rendez-vous est annulé"
+"Le rendez-vous avec l'avocat est annulé et doit être reporté au mois prochain"
 ],
 "a": 0,
 "e": "Missing \"attestation de domicile\" (proof of address); without it they can't file before the 15th deadline, hence \"rapidement\"."
@@ -1237,15 +1237,15 @@ const B2={READING:[
 "lvl": "B2",
 "s": "Je vais être honnête avec vous : le projet est intéressant, et l'équipe a fait un travail sérieux. Mais le budget dépasse de trente pour cent ce que nous avions prévu. Je ne peux pas le présenter au conseil en l'état.",
 "v": "m",
-"q": "Que signifie « en l'état » ici ?",
+"q": "Que veut faire comprendre la personne ?",
 "o": [
-"Dans un autre pays",
-"Plus tard",
-"Avec enthousiasme",
-"Sans modification"
+"Le projet ne pourra pas être présenté sans revoir le budget",
+"Le budget est inférieur à ce qui avait été prévu",
+"Le projet est mauvais et l'équipe n'a pas fait un travail sérieux",
+"Le conseil a déjà refusé le projet à cause de son budget et de son retard"
 ],
-"a": 3,
-"e": "\"En l'état\" = as it stands, without changes. He can't present the project unless the budget is revised."
+"a": 0,
+"e": "She praises the project but the budget is 30% over: \"Je ne peux pas le présenter au conseil en l'état\" = not as it stands, i.e. only if the budget is revised."
 },
 {
 "id": "L-B2-012",
@@ -1256,7 +1256,7 @@ const B2={READING:[
 "o": [
 "Parce que la zone concernée est celle des jeux d'enfants",
 "Parce qu'il habite à côté",
-"Parce que tout le parc sera détruit",
+"Parce qu'il apprend que tout le parc sera détruit pour construire le parking",
 "Parce qu'il n'aime pas les parkings"
 ],
 "a": 0,
@@ -1269,7 +1269,7 @@ const B2={READING:[
 "v": "f",
 "q": "Qu'est-ce que la personne critique ?",
 "o": [
-"L'idée de manger moins de viande",
+"L'idée même de réduire sa consommation de viande pour des raisons de santé",
 "Les explications scientifiques",
 "La manière moralisatrice de présenter le sujet",
 "Les végétariens"
@@ -1301,7 +1301,7 @@ const B2={READING:[
 "o": [
 "Les chiffres sont mauvais",
 "Le chômage a augmenté",
-"Les chiffres sont faux",
+"Les chiffres publiés ce matin sont faux et doivent être corrigés par le ministère",
 "La baisse s'explique en partie par des emplois temporaires"
 ],
 "a": 3,
@@ -1361,7 +1361,7 @@ const B2={READING:[
 "o": [
 "Un festival gratuit mais cher",
 "Un succès de fréquentation mais des difficultés financières",
-"Des subventions en hausse mais moins de visiteurs",
+"Des subventions publiques en hausse mais une fréquentation en forte baisse cette année",
 "Peu de visiteurs mais beaucoup d'argent"
 ],
 "a": 1,
@@ -1377,7 +1377,7 @@ const B2={READING:[
 "Il n'a pas lu l'article",
 "Il veut l'appliquer d'abord dans les hôpitaux",
 "Il trouve l'idée plus réaliste si on commence par les bureaux",
-"Il rejette complètement l'idée"
+"Il rejette complètement l'idée de la semaine de quatre jours, quel que soit le secteur"
 ],
 "a": 2,
 "e": "His doubt is about hospitals; when he hears it would start with offices: \"c'est déjà plus réaliste\"."
@@ -1391,7 +1391,7 @@ const B2={READING:[
 "o": [
 "L'avis des commerçants",
 "Des chiffres de fréquentation en hausse",
-"Le nombre de places de parking",
+"Le nombre de places de parking supprimées dans la rue principale",
 "Le prix des loyers"
 ],
 "a": 1,
@@ -1402,15 +1402,15 @@ const B2={READING:[
 "lvl": "B2",
 "s": "Bon, je ne vais pas tourner autour du pot : nous avons perdu notre principal client le mois dernier. Cela ne veut pas dire que l'entreprise est en danger, mais nous allons devoir réduire certaines dépenses, notamment les déplacements.",
 "v": "m",
-"q": "Que signifie « ne pas tourner autour du pot » ?",
+"q": "Pourquoi la personne commence-t-elle par « je ne vais pas tourner autour du pot » ?",
 "o": [
-"Parler franchement",
-"Faire une pause",
-"Parler longtemps",
-"Changer de sujet"
+"Pour faire une plaisanterie avant de commencer la réunion",
+"Pour annoncer que l'entreprise va fermer définitivement dans les prochains mois",
+"Pour changer de sujet",
+"Pour annoncer franchement une mauvaise nouvelle"
 ],
-"a": 0,
-"e": "\"Ne pas tourner autour du pot\" = not beat about the bush, i.e. to speak frankly."
+"a": 3,
+"e": "\"Ne pas tourner autour du pot\" = to get straight to the point. She then gives bad news (losing the main client), but says the company is not in danger."
 },
 {
 "id": "L-B2-023",
@@ -1480,9 +1480,9 @@ const B2={READING:[
 "q": "Quel conseil la personne donne-t-elle ?",
 "o": [
 "Supprimer totalement les écrans",
-"Éteindre les écrans une heure avant de dormir",
+"Arrêter les appareils bien avant l'heure du coucher",
 "Laisser les enfants décider",
-"Regarder des contenus calmes au lit"
+"Regarder seulement des contenus calmes au lit avant de s'endormir"
 ],
 "a": 1,
 "e": "\"Couper une heure avant le coucher, c'est déjà beaucoup\" = switching off an hour before bed already helps a lot."
@@ -1512,7 +1512,7 @@ const B2={READING:[
 "Qu'il y ait plus de caméras",
 "Qu'on supprime les caméras",
 "Que l'usage des images soit strictement réglementé",
-"Que les caméras soient cachées"
+"Que les caméras soient cachées pour ne pas déranger les passants dans la rue"
 ],
 "a": 2,
 "e": "\"À condition que les images soient strictement encadrées\" (strictly regulated). Without clear rules: \"la porte ouverte à tous les abus\"."
@@ -1571,7 +1571,7 @@ const B2={READING:[
 "o": [
 "Refuser le poste",
 "Démissionner",
-"Signer immédiatement",
+"Signer immédiatement pour ne pas perdre cette offre d'emploi",
 "Négocier une modification du contrat"
 ],
 "a": 3,
@@ -1582,15 +1582,15 @@ const B2={READING:[
 "lvl": "B2",
 "s": "Je suis agriculteur depuis trente ans, et je vois bien que le climat change. Les sécheresses arrivent plus tôt, les orages sont plus violents. Je ne suis pas un militant, mais il faudrait être aveugle pour ne pas le voir.",
 "v": "m",
-"q": "Que veut dire l'agriculteur par « il faudrait être aveugle pour ne pas le voir » ?",
+"q": "Que veut montrer l'agriculteur ?",
 "o": [
-"Il ne croit pas au changement climatique",
-"Il a des problèmes de vue",
-"Il est militant écologiste",
-"Le changement climatique est évident"
+"Que les orages sont moins violents qu'avant",
+"Que le climat n'a pas vraiment changé depuis trente ans",
+"Qu'il est devenu militant écologiste et qu'il participe aux manifestations",
+"Que le changement climatique est évident pour lui"
 ],
 "a": 3,
-"e": "\"Il faudrait être aveugle pour ne pas le voir\" = you'd have to be blind not to see it: it's obvious. He also says \"je ne suis pas un militant\"."
+"e": "\"Il faudrait être aveugle pour ne pas le voir\" = it's obvious. He also says he is not an activist (\"je ne suis pas un militant\")."
 },
 {
 "id": "L-B2-035",
@@ -1599,9 +1599,9 @@ const B2={READING:[
 "v": "f",
 "q": "Que se passera-t-il si la personne ne vient pas avant samedi ?",
 "o": [
-"Elle devra payer une amende",
+"Elle devra payer une amende pour ne pas être venue à temps",
 "Le livre sera envoyé chez elle",
-"Le livre ira à quelqu'un d'autre",
+"Une autre personne pourra l'emprunter",
 "La réservation sera prolongée"
 ],
 "a": 2,
@@ -1647,7 +1647,7 @@ const B2={READING:[
 "Fermer les urgences le week-end",
 "Annoncer de nouveaux horaires",
 "Inciter les gens à appeler avant d'aller aux urgences",
-"Recruter des médecins"
+"Recruter des médecins de garde pour les urgences du week-end et des jours fériés"
 ],
 "a": 2,
 "e": "\"Avant de vous y rendre, pensez à appeler le quinze ou votre médecin de garde\": a public message encouraging people to call first."
@@ -1661,7 +1661,7 @@ const B2={READING:[
 "o": [
 "Les parents",
 "Le gouvernement",
-"Les enseignants",
+"Les professeurs",
 "Les élèves"
 ],
 "a": 2,
@@ -1681,6 +1681,156 @@ const B2={READING:[
 ],
 "a": 3,
 "e": "Ironic: \"je suis visiblement la seule à savoir où se trouve l'aspirateur\" = I'm the only one who does the cleaning."
+},
+{
+"id": "L-B2-041",
+"lvl": "B2",
+"s": "– Ce soir, nous parlons de la limitation de vitesse à trente kilomètres-heure en ville. Madame Roux, vous êtes adjointe au maire : pourquoi cette mesure ?\n– Parce que les chiffres sont clairs. Depuis qu'elle est en place, le nombre de blessés graves a baissé d'un tiers, et le bruit a nettement diminué. Les habitants le remarquent tout de suite.\n– Monsieur Garnier, vous représentez les commerçants. Vous n'êtes pas convaincu ?\n– Je ne conteste pas les chiffres sur la sécurité. Ce que je conteste, c'est la méthode. La mesure a été imposée en trois semaines, sans aucune concertation, et nos livreurs mettent maintenant vingt minutes de plus pour traverser le centre.\n– Madame Roux ?\n– Nous avons consulté les conseils de quartier pendant six mois. Mais j'entends la remarque sur les livraisons : nous allons étudier des créneaux horaires adaptés.\n– Ce serait déjà un premier pas.",
+"v": "d",
+"q": "Quelle est la position finale du représentant des commerçants ?",
+"o": [
+"Il conteste les chiffres sur les accidents",
+"Il accepte la mesure et retire toutes ses critiques sur la concertation",
+"Il juge la proposition sur les livraisons encourageante",
+"Il refuse toute discussion avec la mairie"
+],
+"a": 2,
+"e": "He never disputes the safety figures (\"Je ne conteste pas les chiffres\"); he criticises the method. His last line, \"Ce serait déjà un premier pas\", shows the delivery-slot idea is a welcome start, not full agreement."
+},
+{
+"id": "L-B2-042",
+"lvl": "B2",
+"s": "– Aujourd'hui, une question qui divise les familles : faut-il donner de l'argent de poche aux enfants ? Avec nous, une psychologue et un père de trois enfants.\n– Pour moi, l'argent de poche est un outil d'apprentissage. L'enfant apprend à attendre, à choisir, parfois à se tromper. Mieux vaut se tromper avec dix euros à douze ans qu'avec un crédit à vingt-cinq.\n– Je suis d'accord sur le principe, mais chez nous, on a choisi de lier l'argent à des tâches : ranger sa chambre, sortir le chien…\n– C'est justement ce que je déconseille. Si chaque service est payé, l'enfant finit par se demander pourquoi il aiderait gratuitement. La participation à la vie de famille, ça ne se monnaie pas.\n– Vu comme ça… Je n'y avais pas pensé. Mais on peut peut-être payer les tâches exceptionnelles, comme laver la voiture ?\n– Là, oui, pourquoi pas.",
+"v": "d",
+"q": "Sur quel point la psychologue et le père finissent-ils par s'entendre ?",
+"o": [
+"Il ne faut jamais donner d'argent de poche aux enfants",
+"Il faut payer toutes les tâches ménagères, même les plus simples",
+"On peut payer les tâches exceptionnelles",
+"L'argent de poche doit commencer à vingt-cinq ans"
+],
+"a": 2,
+"e": "She rejects paying everyday chores (\"ça ne se monnaie pas\") but agrees when he suggests paying exceptional tasks: \"Là, oui, pourquoi pas.\""
+},
+{
+"id": "L-B2-043",
+"lvl": "B2",
+"s": "Bonjour à toutes et à tous. Je voudrais vous parler de notre projet de jardin partagé, puisque plusieurs d'entre vous m'ont posé des questions dans le hall. Alors, d'abord, ce que ce projet n'est pas : ce n'est pas un projet de la mairie, et il ne coûtera rien à la copropriété. Les outils et les graines seront financés par une petite subvention que nous avons obtenue au printemps. Ensuite, le terrain : il s'agit de la pelouse derrière le bâtiment C, qui, soyons honnêtes, ne sert à personne. Enfin, l'organisation. Chaque foyer volontaire aurait une petite parcelle, et nous nous retrouverions un samedi par mois pour l'entretien commun. Nous avons aussi pensé à l'eau : un récupérateur sera installé sous la gouttière, pour ne pas augmenter les charges. Et les enfants de l'immeuble pourraient participer, ce qui leur ferait une activité en plein air, loin des écrans. Je sais que certains craignent le bruit ou les allées et venues. Je propose donc qu'on fasse un essai d'un an, et qu'on vote à nouveau à la prochaine assemblée générale. Si ça ne fonctionne pas, on remet la pelouse. Les personnes intéressées peuvent laisser leur nom dans la boîte aux lettres du conseil syndical avant la fin du mois. Merci de votre attention.",
+"v": "f",
+"q": "Comment la personne répond-elle aux inquiétudes de certains voisins ?",
+"o": [
+"Elle affirme qu'il n'y aura jamais de bruit dans le jardin",
+"Elle annule le projet",
+"Elle demande à la mairie de financer le projet",
+"Elle propose une période d'essai et un nouveau vote"
+],
+"a": 3,
+"e": "\"Je propose donc qu'on fasse un essai d'un an, et qu'on vote à nouveau\": a one-year trial and a new vote, with the lawn put back if it fails."
+},
+{
+"id": "L-B2-044",
+"lvl": "B2",
+"s": "Vous savez, quand j'ai repris la boulangerie de mes parents, tout le monde me disait que j'étais fou. Les supermarchés vendaient du pain moins cher, les jeunes partaient vers la ville, le village perdait des habitants chaque année. Et c'est vrai que les deux premières années ont été très dures. Je travaillais seize heures par jour et je ne me payais presque pas. Ce qui a tout changé, ce n'est pas le pain lui-même. C'est le fait d'avoir transformé la boutique en lieu de vie : un petit coin café, un point relais pour les colis, un tableau d'annonces pour les habitants. Au début, j'avoue que je n'y croyais pas trop. C'est ma femme qui a insisté pour le coin café. Elle disait que les gens n'avaient plus d'endroit pour se parler depuis la fermeture du bar. Elle avait raison : maintenant, le matin, il y a toujours trois ou quatre retraités qui discutent autour d'une table. Les gens viennent pour un service et repartent avec une baguette. Aujourd'hui, j'ai deux employés. Je ne dis pas que c'est un modèle pour tout le monde, mais ça montre qu'un commerce de village peut survivre, à condition de ne pas être seulement un commerce.",
+"v": "m",
+"q": "Selon le boulanger, qu'est-ce qui a sauvé son commerce ?",
+"o": [
+"Une aide financière de ses parents",
+"Le fait d'offrir d'autres services et un lieu de rencontre",
+"La baisse du prix de son pain face aux supermarchés",
+"L'arrivée de nombreux jeunes au village"
+],
+"a": 1,
+"e": "\"Ce qui a tout changé, ce n'est pas le pain lui-même\": it was turning the shop into a \"lieu de vie\" (café corner, parcel point, notice board). His conclusion: a village shop survives \"à condition de ne pas être seulement un commerce\"."
+},
+{
+"id": "L-B2-045",
+"lvl": "B2",
+"s": "– On reçoit aujourd'hui deux enseignants pour parler des devoirs à la maison. Vous, vous les avez supprimés dans votre école primaire.\n– Oui, depuis deux ans. Nous avons constaté que les devoirs creusaient les inégalités : certains enfants sont aidés par des parents disponibles, d'autres rentrent dans un appartement vide. Résultat, l'école renforçait ce qu'elle était censée corriger.\n– Vous, au collège, vous n'êtes pas d'accord ?\n– Pas tout à fait. Je partage le constat sur les inégalités, mais la suppression pure et simple me paraît excessive. Au collège, les élèves doivent apprendre à travailler seuls. Ce que nous faisons, c'est une heure d'étude encadrée à la fin de la journée, avec un professeur. Les devoirs se font à l'école.\n– Au fond, vous dites la même chose ?\n– Disons que nous partons du même problème, mais pas pour arriver au même endroit.",
+"v": "d",
+"q": "Qu'est-ce qui distingue la position de l'enseignant de collège ?",
+"o": [
+"Il pense que les devoirs ne créent aucune inégalité",
+"Il est entièrement d'accord avec sa collègue",
+"Il garde le travail personnel, mais encadré à l'école",
+"Il veut supprimer les devoirs dans tous les collèges"
+],
+"a": 2,
+"e": "He shares the diagnosis (\"Je partage le constat\") but finds a full ban excessive; his school keeps homework as supervised study at school. \"Nous partons du même problème, mais pas pour arriver au même endroit.\""
+},
+{
+"id": "L-B2-046",
+"lvl": "B2",
+"s": "Bonsoir. Comme vous le savez, la piscine municipale fermera ses portes pour travaux à partir du mois de janvier. Je sais que cette annonce a suscité beaucoup d'inquiétude, notamment chez les clubs et les écoles, et je veux être transparente avec vous. Les travaux devaient initialement durer six mois. Nous savons aujourd'hui qu'ils en dureront probablement dix, en raison de la découverte d'amiante dans les vestiaires. Ce retard n'est la faute de personne, mais il a des conséquences. Nous avons donc signé un accord avec la commune voisine : les scolaires y auront accès deux matinées par semaine, et un bus gratuit sera mis en place. Les travaux, je le rappelle, sont indispensables : le bassin perd de l'eau, le chauffage date des années quatre-vingt, et l'accès pour les personnes à mobilité réduite n'est pas aux normes. Nous ne pouvions plus repousser. Pour le public, en revanche, je ne vais pas vous promettre ce que je ne peux pas tenir : il n'y aura pas de solution équivalente avant la réouverture. Je vous invite toutefois à consulter le site de la ville, où nous publierons chaque mois l'avancement du chantier, ainsi que les horaires des piscines des communes voisines. Merci de votre compréhension.",
+"v": "f",
+"q": "Quelle est l'attitude de la maire concernant le public ?",
+"o": [
+"Elle promet une solution équivalente dès janvier",
+"Elle reconnaît honnêtement qu'il n'y aura pas de vraie solution",
+"Elle accuse les entreprises d'être responsables du retard",
+"Elle annonce que la piscine ne rouvrira pas"
+],
+"a": 1,
+"e": "\"Je ne vais pas vous promettre ce que je ne peux pas tenir : il n'y aura pas de solution équivalente\". She is transparent; schools get a solution, the general public does not."
+},
+{
+"id": "L-B2-047",
+"lvl": "B2",
+"s": "– Alors, ce débat : le livre numérique va-t-il remplacer le livre papier ? Vous êtes éditrice…\n– Franchement, on l'annonce depuis quinze ans, et ça n'est pas arrivé. En France, le numérique représente une petite part des ventes. Les lecteurs restent attachés à l'objet.\n– Vous, vous dirigez une plateforme de lecture en ligne. Vous êtes plus optimiste ?\n– Je dirais plutôt que la question est mal posée. Personne ne parle de remplacement. Ce qu'on observe, c'est que les gens lisent selon les situations : le papier à la maison, la tablette dans le train, et de plus en plus de livres audio en voiture. Ce sont des usages qui s'additionnent.\n– Vous seriez d'accord avec ça ?\n– Sur l'idée que les usages s'additionnent, oui. Sur le livre audio, en revanche, j'attends de voir : beaucoup d'abonnés s'inscrivent, mais combien écoutent vraiment jusqu'au bout ?",
+"v": "d",
+"q": "Sur quoi l'éditrice exprime-t-elle encore un doute à la fin ?",
+"o": [
+"Sur la part du numérique dans les ventes en France",
+"Sur le fait que les usages de lecture s'additionnent",
+"Sur l'attachement des lecteurs au livre papier",
+"Sur l'usage réel du livre audio par les abonnés"
+],
+"a": 3,
+"e": "She agrees that uses add up (\"oui\"), but \"en revanche, j'attends de voir\" about audiobooks: many subscribe, but how many actually listen to the end?"
+},
+{
+"id": "L-B2-048",
+"lvl": "B2",
+"s": "Je voudrais revenir sur un sujet dont on parle peu : la fatigue des aidants. En France, des millions de personnes s'occupent d'un parent âgé ou d'un proche malade, souvent en plus de leur travail. On les remercie volontiers dans les discours, mais concrètement, on les aide très peu. Prenez le congé de proche aidant : il existe, c'est vrai, mais il est mal indemnisé et peu de gens savent qu'ils y ont droit. Résultat, beaucoup réduisent leur temps de travail, perdent des revenus, et finissent par s'épuiser eux-mêmes. J'ai moi-même accompagné ma mère pendant quatre ans. Je me souviens des nuits interrompues, des rendez-vous médicaux à caser entre deux réunions, et de cette impression de n'avoir jamais le droit d'être fatigué. Je ne me plains pas, je l'ai fait volontiers, mais personne ne m'avait prévenu. Ce que je demande, ce n'est pas une révolution. C'est d'abord une meilleure information, par exemple chez le médecin traitant, et ensuite des solutions de répit : quelques jours par mois où quelqu'un prend le relais. Un aidant qui s'effondre, c'est deux personnes qui ont besoin d'aide au lieu d'une.",
+"v": "m",
+"q": "Que veut dire la personne par « un aidant qui s'effondre, c'est deux personnes qui ont besoin d'aide » ?",
+"o": [
+"Que le congé de proche aidant est suffisamment bien indemnisé",
+"Que les aidants doivent toujours travailler à deux",
+"Que les personnes âgées n'ont pas besoin d'aide",
+"Que l'épuisement de l'aidant crée un besoin d'aide supplémentaire"
+],
+"a": 3,
+"e": "If the carer collapses, both the carer and the person cared for need help: an argument for respite solutions (\"solutions de répit\") and better information."
+},
+{
+"id": "L-B2-049",
+"lvl": "B2",
+"s": "– On parle de l'intelligence artificielle au travail. Vous dirigez une agence de traduction : est-ce que l'IA menace votre métier ?\n– Elle l'a déjà transformé, inutile de le nier. Les textes simples, les modes d'emploi par exemple, sont désormais traduits automatiquement, puis relus. Nos tarifs ont baissé sur ce type de travail.\n– Donc c'est une menace.\n– Pour une partie du métier, oui. Mais regardez ce qui se passe sur les contrats juridiques, la publicité ou la littérature : là, les clients reviennent vers nous, parce qu'une erreur ou un mauvais ton coûte très cher. Ce qui disparaît, c'est le travail répétitif.\n– Et les jeunes traducteurs, comment apprendront-ils, si les tâches simples disparaissent ?\n– Ça, c'est la vraie question, et je n'ai pas de réponse satisfaisante. Les débutants se formaient justement sur ces textes-là.",
+"v": "d",
+"q": "Qu'est-ce qui inquiète vraiment la directrice de l'agence ?",
+"o": [
+"La disparition complète du métier de traducteur",
+"La baisse de qualité des contrats juridiques",
+"Le retour des clients vers les agences",
+"La formation des débutants"
+],
+"a": 3,
+"e": "She accepts that part of the job has changed, but \"Ça, c'est la vraie question, et je n'ai pas de réponse satisfaisante\": how will beginners learn, since they used to train on simple texts?"
+},
+{
+"id": "L-B2-050",
+"lvl": "B2",
+"s": "Bonjour, c'est Nathalie, de l'agence immobilière. Je vous appelle au sujet de l'appartement de la rue des Lilas. Alors, j'ai une bonne et une moins bonne nouvelle. La bonne, c'est que le propriétaire a bien reçu votre dossier et qu'il le trouve sérieux. La moins bonne, c'est qu'il a reçu une autre candidature hier soir, avec des revenus un peu plus élevés que les vôtres. Il ne s'est pas encore décidé. Cela dit, il m'a confié qu'il préférerait un locataire qui reste longtemps, parce qu'il en a assez des changements tous les ans. Je vous rappelle aussi que l'appartement est libre dès le premier du mois prochain, et que le propriétaire est prêt à refaire la peinture de la chambre avant votre arrivée, si vous êtes retenus. Ça, c'est plutôt un bon signe. Si vous pouvez me confirmer par écrit que vous comptez rester au moins trois ans, et si vous avez éventuellement un garant, je pense que ça pourrait faire la différence. Il veut donner sa réponse vendredi, donc il faudrait m'envoyer ça avant jeudi soir. Rappelez-moi si vous avez des questions. Je suis à l'agence tout l'après-midi, et demain matin à partir de neuf heures. N'oubliez pas : avant jeudi soir. Bonne journée, au revoir.",
+"v": "f",
+"q": "Que conseille implicitement l'agente ?",
+"o": [
+"Montrer au propriétaire qu'on est un locataire stable et sûr",
+"Attendre la réponse du propriétaire sans rien faire",
+"Proposer un loyer plus élevé que l'autre candidat",
+"Abandonner ce logement car l'autre candidat a de meilleurs revenus"
+],
+"a": 0,
+"e": "The owner wants a long-term tenant; she suggests confirming in writing a stay of at least three years and offering a guarantor (\"garant\") before Thursday evening: show stability and security."
 }
 ],WRITING:[
 {
@@ -1690,7 +1840,7 @@ const B2={READING:[
 "en": "A French friend asks you to describe your neighbourhood and whether you would recommend it to a family with children.",
 "min": 30,
 "max": 60,
-"m": "Salut Hugo,\nMon quartier est calme et verdoyant, même si les loyers ont beaucoup augmenté. Certes, il manque un peu de commerces, mais l'école est excellente et le parc est à deux pas. Je le conseillerais donc à une famille, à condition qu'elle ait une voiture.\nBises,\nSam",
+"m": "Salut Hugo,\nMon quartier est calme et verdoyant, mais les loyers ont beaucoup augmenté. Certes, il manque quelques commerces, mais l'école est excellente et le parc est à deux pas. Je le conseillerais donc à une famille, à condition qu'elle ait une voiture.\nBises,\nSam",
 "why": [
 "States a clear view (je le conseillerais) and keeps it.",
 "Concedes a drawback with \"Certes… mais\" and adds a condition with \"à condition que\" + subjunctive (ait).",
@@ -1744,7 +1894,7 @@ const B2={READING:[
 "prep": 0,
 "sec": 210,
 "ex": "TCF IRN timing: 3 min 30, no preparation.",
-"m": "Je comprends que tu aies envie d'une voiture neuve, c'est rassurant. Mais as-tu fait le calcul ? Une voiture neuve perd près d'un quart de sa valeur dès la première année. … Tu dis que l'occasion, c'est risqué ? C'est vrai si on achète n'importe où, mais chez un garage avec une garantie, le risque est limité. … Et franchement, tu travailles à dix minutes du tram. Avec un abonnement, tu économiserais l'assurance, le parking et l'entretien. Pour les week-ends, tu pourrais louer une voiture. Réfléchis-y avant de signer."
+"m": "Je comprends que tu aies envie d'une voiture neuve, c'est rassurant. Mais as-tu fait le calcul ? Une voiture neuve perd près d'un quart de sa valeur dès la première année. … Tu dis que l'occasion, c'est risqué ? C'est vrai si on achète n'importe où, mais chez un garagiste avec une garantie, le risque est limité. … Et franchement, tu travailles à dix minutes du tram. Avec un abonnement, tu économiserais l'assurance, le parking et l'entretien. Pour les week-ends, tu pourrais louer une voiture. Réfléchis-y avant de signer."
 },
 {
 "id": "S-B2-3",

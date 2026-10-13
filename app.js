@@ -37,7 +37,7 @@ function score(k,items){const d=items||SEC[k].d;let c=0,t=0;for(const q of d)if(
 const pc=([c,t])=>t?100*c/t:0;
 function judge(b1,b2,lv,min){min=min===undefined?15:min;
  if(lv==='B2'){if(b2[1]<min)return'Not enough answers yet';const p2=pc(b2),p1=pc(b1);
-  if(p2>=70&&b1[1]>=min&&p1>=85)return'B2 ready';if(p2>=55)return'Close to B2';if(b1[1]>=min&&p1>=75)return'B1 level';return'Below B1'}
+  if(p2>=80||(p2>=70&&b1[1]>=min&&p1>=85))return'B2 ready';if(p2>=70)return'Close to B2 (80%+ unlocks B2 ready)';if(p2>=55)return'Close to B2';if(b1[1]>=min&&p1>=75)return'B1 level';return'Below B1'}
  if(b1[1]<min)return'Not enough answers yet';return level(pc(b1))}
 function readiness(k){const all=SEC[k].all||SEC[k].d;return judge(score(k,all.filter(q=>q.lvl!=='B2')),score(k,all.filter(q=>q.lvl==='B2')),LV())}
 function streakAlive(){if(!S.last)return 0;const y=new Date();y.setDate(y.getDate()-1);return S.last===day(new Date())||S.last===day(y)?S.streak:0}
@@ -84,7 +84,7 @@ function home(){topHome();
  </div>
  ${S.hist.filter(h=>h.t&&(h.lv||'B1')===lv).length?`<div class="card"><span class="eyebrow">Mock test history · ${lv}</span>${S.hist.filter(h=>h.t&&(h.lv||'B1')===lv).slice(-5).reverse().map(h=>`<div class="hist"><span>${h.d}</span><b>${h.L?`L ${h.L[0]}/${h.L[1]} · R ${h.R[0]}/${h.R[1]}`:`${h.c}/${h.t}`}</b><span>${h.lab||level(100*h.c/h.t)}*</span></div>`).join('')}</div>`:''}
  ${lv==='B2'?BETA:''}
- <p class="mut small">* Estimate only, not an official TCF result. ${lv==='B2'?'B2 ready = 70%+ on B2 questions and 85%+ on B1 questions; close to B2 = 55–69% on B2; shown after 15 answers per level in a section.':'B1 ready ≥75%, close 55–74%, not yet &lt;55%, from B1 questions; shown after 15 answers in a section.'} In the real TCF IRN, listening and reading are scored out of 499 (B1 = 300–399, B2 = 400–499) and writing and speaking out of 20 (B1 = 6–9, B2 = 10–13).</p>
+ <p class="mut small">* Indicative estimate only, not an official TCF result. ${lv==='B2'?'B2 ready = 80%+ on B2 questions (or 70%+ on B2 with 15+ B1 answers at 85%+); close to B2 = 55–79% on B2; shown after 15 B2 answers in a section.':'B1 ready ≥75%, close 55–74%, not yet &lt;55%, from B1 questions; shown after 15 answers in a section.'} In the real TCF IRN, listening and reading are scored out of 499 (B1 = 300–399, B2 = 400–499) and writing and speaking out of 20 (B1 = 6–9, B2 = 10–13).</p>
  <div class="scene">${ART('scene-band-wide','sw')}${ART('scene-band-mobile','sm')}</div>
 <p class="site-credit"><a href="https://underkover.com" target="_blank" rel="noopener">by underkover</a><span aria-hidden="true"> · </span><a href="terms.html">Terms</a></p>
  <button class="btn ghost w" onclick="if(confirm('Erase all progress (B1 and B2), points and practice days?')){localStorage.removeItem(KEY);location.reload()}">Reset progress</button>${tabs('home')}`}
@@ -102,12 +102,17 @@ const ARTD=(n,c)=>`<span class="art ${c}" aria-hidden="true"><img src="art/${n}.
 const EMB={L:'emblem-listening',R:'emblem-reading'};
 function firstUn(k){const d=SEC[k].d;for(let i=0;i<d.length;i++)if(!(d[i].id in S.ans))return i;return 0}
 // ---- question card
+// Seeded per-item option order; answers are stored as original indexes so saved progress still maps.
+function _h(x){let v=2166136261;for(const c of x){v^=c.charCodeAt(0);v=Math.imul(v,16777619)}return v>>>0}
+function _mb(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const _ORD={};function ORD(q){const id=q.id||q.q;if(_ORD[id])return _ORD[id];const r=_mb(_h(id+'s717')),o=q.o.map((_,j)=>j);for(let i=o.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[o[i],o[j]]=[o[j],o[i]]}return _ORD[id]=o}
+const LET=(q,j)=>'ABCD'[ORD(q).indexOf(j)];
 function qHTML(k,q,chosen,show,sel){let h='';
  if(k==='L'){h+=`<div class="row" style="justify-content:center;margin:6px 0 10px"><button class="btn pri spk" aria-label="Écouter" onclick='speak(${JSON.stringify(q.s).replace(/'/g,"&#39;")})'><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg><span>Écouter</span></button><button class="btn ghost spk" aria-label="Lentement" onclick='speak(${JSON.stringify(q.s).replace(/'/g,"&#39;")},${q.lvl==='B2'?0.8:0.7})'><span class="slow">${q.lvl==='B2'?'0.8':'0.7'}×</span><span>Lentement</span></button></div><p class="mut" style="text-align:center">Tap to listen · replay as often as you like</p>`;
   if(show)h+=`<div class="text anim"><span class="eyebrow">Transcript</span>${esc(q.s)}</div>`}
  else if(q.t)h+=`<div class="text">${esc(q.t)}</div>`;
  h+=`<div class="q">${esc(q.q)}</div>`;
- q.o.forEach((o,j)=>{let c='';if(show){if(j===q.a)c='ok';else if(j===chosen)c='bad'}else if(j===sel)c='sel';h+=`<button class="opt ${c}" data-j="${j}" ${show?'disabled':''}><span class="k">${'ABCD'[j]}</span>${esc(o)}</button>`});
+ ORD(q).forEach((j,d)=>{const o=q.o[j];let c='';if(show){if(j===q.a)c='ok';else if(j===chosen)c='bad'}else if(j===sel)c='sel';h+=`<button class="opt ${c}" data-j="${j}" ${show?'disabled':''}><span class="k">${'ABCD'[d]}</span>${esc(o)}</button>`});
  return h}
 const tag=k=>`<span class="chip">${SEC[k].ic} · ${SEC[k].en}</span>`;
 function quiz({k,i}){const d=SEC[k].d,q=d[i];if(!q)return go('home');const ch=S.ans[q.id],show=ch!==undefined;let sel=null;
@@ -122,9 +127,9 @@ function quiz({k,i}){const d=SEC[k].d,q=d[i];if(!q)return go('home');const ch=S.
   const c=$('#chk');if(c)c.onclick=commit;
   $('#skip').onclick=()=>{if(show||sel===null)return skip();askSkip(commit,skip)}};
  render();
- if(show){const ok=ch===q.a;showBanner(ok,ok?'Correct'+(arguments[0].fresh?' · +10 pts':''):'Pas tout à fait · answer '+'ABCD'[q.a],esc(q.e),'Question suivante',next)}}
+ if(show){const ok=ch===q.a;showBanner(ok,ok?'Correct'+(arguments[0].fresh?' · +10 pts':''):'Pas tout à fait · answer '+LET(q,q.a),esc(q.e),'Question suivante',next)}}
 function results(k){const[c,t]=score(k),p=t?100*c/t:0;topSes(1);
- app.innerHTML=`<div class="anim" style="text-align:center">${ART('emblem-results','resart')}<div class="big">${ring(p/100,120,8)}<b>${Math.round(p)}%</b></div><h2>${SEC[k].n}</h2><p>${lvlTxt(c,t,k)}</p><p class="mut">Answered ${t} of ${SEC[k].d.length}. * Estimate only, not an official TCF result.</p></div>
+ app.innerHTML=`<div class="anim" style="text-align:center">${ART('emblem-results','resart')}<div class="big">${ring(p/100,120,8)}<b>${Math.round(p)}%</b></div><h2>${SEC[k].n}</h2><p>${lvlTxt(c,t,k)}</p><p class="mut">Answered ${t} of ${SEC[k].d.length}. * Indicative estimate only, not an official TCF result.</p></div>
  ${foot(`<div class="row"><button class="btn ghost" onclick="if(confirm('Clear your ${LV()} answers for this section?')){SEC['${k}'].d.forEach(q=>delete S.ans[q.id]);save();go('quiz',{k:'${k}',i:0})}">Refaire</button><button class="btn pri" onclick="go('home')">Continuer</button></div>`)}`;
  if(p>=70)confetti(160)}
 // ---- mock
@@ -146,7 +151,7 @@ function mockPlay(i){const q=mock.secs[mock.ph][mock.cur].q;if(!mock.replay&&moc
 function mockShow(){stopAudio();scrollTo(0,0);stopTimer();
  const{ph,cur}=mock,qs=mock.secs[ph],A=mock.a[ph],{k,q}=qs[cur],i=cur,ch=A[cur];
  topSes((ph+Object.keys(A).length/qs.length)/mock.P.length,'<div class="pill clk" id="clk"></div>');timerId=setInterval(tick,1000);tick();
- let body;if(k==='L'){const used=!mock.replay&&mock.played[i];body=`<div class="row" style="justify-content:center;margin:6px 0 10px"><button class="btn pri spk" id="mplay" ${used?'disabled':''} onclick="mockPlay(${i})"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg><span>${used?'Écouté (once)':'Écouter'}</span></button></div><p class="mut" style="text-align:center">${mock.replay?'Practice mode: replay allowed.':'Exam mode: the recording plays once.'}</p><div class="q">${esc(q.q)}</div>`+q.o.map((o,j)=>`<button class="opt ${j===ch?'sel':''}" data-j="${j}"><span class="k">${'ABCD'[j]}</span>${esc(o)}</button>`).join('')}else body=qHTML(k,q,null,false,ch);
+ let body;if(k==='L'){const used=!mock.replay&&mock.played[i];body=`<div class="row" style="justify-content:center;margin:6px 0 10px"><button class="btn pri spk" id="mplay" ${used?'disabled':''} onclick="mockPlay(${i})"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg><span>${used?'Écouté (once)':'Écouter'}</span></button></div><p class="mut" style="text-align:center">${mock.replay?'Practice mode: replay allowed.':'Exam mode: the recording plays once.'}</p><div class="q">${esc(q.q)}</div>`+ORD(q).map((j,d)=>`<button class="opt ${j===ch?'sel':''}" data-j="${j}"><span class="k">${'ABCD'[d]}</span>${esc(q.o[j])}</button>`).join('')}else body=qHTML(k,q,null,false,ch);
  const last=cur===qs.length-1,lastSec=ph===mock.P.length-1;
  app.innerHTML=`<div class="anim">${tag(k)} <span class="mut">${cur+1}/${qs.length}</span><div style="height:8px"></div>${body}</div>
  ${foot(`<div class="row"><button class="btn ghost" style="flex:0 0 64px" ${cur?'':'disabled'} onclick="mock.cur--;mockShow()">←</button>${!last?`<button class="btn pri" onclick="mock.cur++;mockShow()">Suivant</button>`:`<button class="btn pri" onclick="if(confirm('${lastSec?'Finish and see score?':'Finish listening and start reading?'}'))mockNext()">${lastSec?'Terminer':'Section suivante'}</button>`}</div>`)}
@@ -159,9 +164,9 @@ function mockFinish(timeout){stopTimer();const m=mock;const by={};let c=0,t=0,an
  const saved=ans>0;if(saved){S.hist.push({d:new Date().toLocaleDateString('fr-FR'),lv:m.lv,c,t,L:by.L,R:by.R,lab:`L ${labs.L} · R ${labs.R}`});addXP(c*3)}else save();
  mock=null;const p=100*c/t;topSes(1);
  app.innerHTML=`<div class="anim" style="text-align:center"><div class="big">${ring(p/100,120,8)}<b>${Math.round(p)}%</b></div><h2>${timeout?'Temps écoulé ! ':''}${c}/${t}</h2><p>${saved?`+${c*3} pts · see each section below`:'No answers given, so this mock was not saved to your history.'}</p></div>
- <div class="sc">${m.P.map(({k})=>`<div><span class="eyebrow">${SEC[k].ic}</span><b>${by[k][0]}/${by[k][1]}</b><span class="mut">${labs[k]}*</span></div>`).join('')}</div>
- <p class="mut">* Estimate only, not an official TCF result. Unanswered questions count as wrong. Writing and speaking are practised and self-assessed separately.</p><h2>Corrections</h2>
- ${m.P.map((_,ph)=>m.secs[ph].map(({k,q},n)=>{const a=m.a[ph][n],ok=a===q.a;return `<div class="card">${tag(k)}<div style="height:6px"></div>${qHTML(k,q,a,true)}<div class="text" style="background:${ok?'var(--okl)':'var(--badl)'}">${ok?'Correct —':'Answer '+'ABCD'[q.a]+' —'} ${esc(q.e)}</div></div>`}).join('')).join('')}
+ <div class="sc">${m.P.map(({k})=>`<div><span class="eyebrow">${SEC[k].ic}</span><b>${by[k][0]}/${by[k][1]}</b><span class="mut">Indicative: ${labs[k]}*</span></div>`).join('')}</div>
+ <p class="mut">* Indicative estimate only, not an official TCF result. Unanswered questions count as wrong. Writing and speaking are practised and self-assessed separately.</p><h2>Corrections</h2>
+ ${m.P.map((_,ph)=>m.secs[ph].map(({k,q},n)=>{const a=m.a[ph][n],ok=a===q.a;return `<div class="card">${tag(k)}<div style="height:6px"></div>${qHTML(k,q,a,true)}<div class="text" style="background:${ok?'var(--okl)':'var(--badl)'}">${ok?'Correct —':'Answer '+LET(q,q.a)+' —'} ${esc(q.e)}</div></div>`}).join('')).join('')}
  ${foot(`<button class="btn pri w" onclick="go('home')">Continuer</button>`)}`}
 // ---- writing
 function wc(t){return(t.trim().match(/[\p{L}\p{N}'’-]+/gu)||[]).length}
